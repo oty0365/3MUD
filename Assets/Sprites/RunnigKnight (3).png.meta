@@ -1,37 +1,58 @@
 fileFormatVersion: 2
-guid: 6c1d098216bdc0f42b734a7f854cf3eb
+guid: aad1a75a3fb90f8458c3aae998ade3d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7601709704799604395
-    second: RunnigKnight (2)_0
+      213: 5110136463816073231
+    second: RunnigKnight (3)_0
   - first:
-      213: -1194717511949146608
-    second: RunnigKnight (2)_1
+      213: 7632525731752912260
+    second: RunnigKnight (3)_1
   - first:
-      213: 7969151335145882480
-    second: RunnigKnight (2)_2
+      213: -4021910839338379654
+    second: RunnigKnight (3)_2
   - first:
-      213: 6454768452906916049
-    second: RunnigKnight (2)_3
+      213: 5820352236929367086
+    second: RunnigKnight (3)_3
   - first:
-      213: 1095654388771062425
-    second: RunnigKnight (2)_4
+      213: -8144987106487531076
+    second: RunnigKnight (3)_4
   - first:
-      213: 2230000343689794143
-    second: RunnigKnight (2)_5
+      213: 3643075110570808481
+    second: RunnigKnight (3)_5
   - first:
-      213: -7311994295784144235
-    second: RunnigKnight (2)_6
+      213: -9171875368737991792
+    second: RunnigKnight (3)_6
   - first:
-      213: -3367575631410184732
-    second: RunnigKnight (2)_7
+      213: 8083641785934250776
+    second: RunnigKnight (3)_7
   - first:
-      213: -8378621251863432164
-    second: RunnigKnight (2)_8
+      213: -1507019553739798220
+    second: RunnigKnight (3)_8
   - first:
-      213: 1342902484798541943
-    second: RunnigKnight (2)_9
+      213: -7327472472355794537
+    second: RunnigKnight (3)_9
+  - first:
+      213: 6699184398464645608
+    second: RunnigKnight (3)_10
+  - first:
+      213: -6194797639685892282
+    second: RunnigKnight (3)_11
+  - first:
+      213: -8127386287238826160
+    second: RunnigKnight (3)_12
+  - first:
+      213: 2272895413682104355
+    second: RunnigKnight (3)_13
+  - first:
+      213: -7673931424634972532
+    second: RunnigKnight (3)_14
+  - first:
+      213: 1663453457558110057
+    second: RunnigKnight (3)_15
+  - first:
+      213: -503686394643212493
+    second: RunnigKnight (3)_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -153,7 +174,95 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RunnigKnight (2)_0
+      name: RunnigKnight (3)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae7d79131d075644485b3259dac4df0f
+      internalID: -1532008358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunnigKnight (3)_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1280
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb1e708cae110724fa225fcd25889a4c
+      internalID: 186591088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunnigKnight (3)_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1280
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 397c0dfe78a6e2143b4f8570aeef0268
+      internalID: -1435894963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunnigKnight (3)_3
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1280
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2ef9676d2aa2894bbbe72c54d0930c7
+      internalID: 1646997882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunnigKnight (3)_4
       rect:
         serializedVersion: 2
         x: 0
@@ -168,14 +277,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edf7d2c6dabccd640b479a0cc54ac974
-      internalID: 2026157455
+      spriteID: 681dd1f4c9eab5a49bf8a535137da612
+      internalID: 1419155142
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_1
+      name: RunnigKnight (3)_5
       rect:
         serializedVersion: 2
         x: 320
@@ -190,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03bd889fbe7de384688581df5d1f5f09
-      internalID: -493242544
+      spriteID: 2325d91c05ed4184b988896c7f9d1223
+      internalID: 2096344706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_2
+      name: RunnigKnight (3)_6
       rect:
         serializedVersion: 2
         x: 640
@@ -212,14 +321,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9baae0923a23e7e40a8d1cfdf2bed800
-      internalID: 1973761657
+      spriteID: 9ff5f83ac6b18084e94e53dcf691f8bb
+      internalID: 680503616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_3
+      name: RunnigKnight (3)_7
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 960
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acbcbe00ef64250418cf83e5ae4ac2c1
+      internalID: -1988980285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunnigKnight (3)_8
       rect:
         serializedVersion: 2
         x: 0
@@ -234,14 +365,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d3912b869bd6aa4bad577e121486879
-      internalID: 17948085
+      spriteID: e6930ea6945afa845be101d8fb27c689
+      internalID: 38653329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_4
+      name: RunnigKnight (3)_9
       rect:
         serializedVersion: 2
         x: 320
@@ -256,14 +387,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b850661cc915531489390dc0259b9f0e
-      internalID: -1511684367
+      spriteID: ba9e700c2dc87e6438ebf230065f3e9b
+      internalID: -564946062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_5
+      name: RunnigKnight (3)_10
       rect:
         serializedVersion: 2
         x: 640
@@ -278,14 +409,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e4c45a35c52759408d5353086cd888f
-      internalID: 1074577536
+      spriteID: a68b3e6e405aade48a50f8bdc2f75e24
+      internalID: -359644446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_6
+      name: RunnigKnight (3)_11
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 640
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92ca4dd10659a004ba35c8e67276d378
+      internalID: -1616936267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunnigKnight (3)_12
       rect:
         serializedVersion: 2
         x: 0
@@ -300,14 +453,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8a2368bdc530e641998b2b281a09bff
-      internalID: 639730647
+      spriteID: df107a472a734e84c9ae2ed36f7d6cab
+      internalID: -1234462159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_7
+      name: RunnigKnight (3)_13
       rect:
         serializedVersion: 2
         x: 320
@@ -322,14 +475,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 327c15583152c5b4f9aa0874ec1cf327
-      internalID: -1442714031
+      spriteID: 52a6bf14f54f3c14bb576c8fbe460d4f
+      internalID: -2142235246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_8
+      name: RunnigKnight (3)_14
       rect:
         serializedVersion: 2
         x: 640
@@ -344,14 +497,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 666e62434d30da241b597c3369df6bb0
-      internalID: 7472689
+      spriteID: 17f7f930dbd0a0b4dba3884663928040
+      internalID: -1053819729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RunnigKnight (2)_9
+      name: RunnigKnight (3)_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0971926cc2946da489bedb4c67d4a0e8
+      internalID: -1041569358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunnigKnight (3)_16
       rect:
         serializedVersion: 2
         x: 0
@@ -366,8 +541,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 798b712cc51a46d4093d3a18608a9f73
-      internalID: 1188040153
+      spriteID: 4f7105ce7e2eafe45bdd0dba6255ad4c
+      internalID: 1395700812
       vertices: []
       indices: 
       edges: []
@@ -376,7 +551,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: aa9d13c5431defe448a526069131d1d6
+    spriteID: 7eb8daf12097c054a8b029c53506184d
     internalID: 0
     vertices: []
     indices: 
@@ -386,16 +561,23 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RunnigKnight (2)_0: 2026157455
-      RunnigKnight (2)_1: -493242544
-      RunnigKnight (2)_2: 1973761657
-      RunnigKnight (2)_3: 17948085
-      RunnigKnight (2)_4: -1511684367
-      RunnigKnight (2)_5: 1074577536
-      RunnigKnight (2)_6: 639730647
-      RunnigKnight (2)_7: -1442714031
-      RunnigKnight (2)_8: 7472689
-      RunnigKnight (2)_9: 1188040153
+      RunnigKnight (3)_0: -1532008358
+      RunnigKnight (3)_1: 186591088
+      RunnigKnight (3)_10: -359644446
+      RunnigKnight (3)_11: -1616936267
+      RunnigKnight (3)_12: -1234462159
+      RunnigKnight (3)_13: -2142235246
+      RunnigKnight (3)_14: -1053819729
+      RunnigKnight (3)_15: -1041569358
+      RunnigKnight (3)_16: 1395700812
+      RunnigKnight (3)_2: -1435894963
+      RunnigKnight (3)_3: 1646997882
+      RunnigKnight (3)_4: 1419155142
+      RunnigKnight (3)_5: 2096344706
+      RunnigKnight (3)_6: 680503616
+      RunnigKnight (3)_7: -1988980285
+      RunnigKnight (3)_8: 38653329
+      RunnigKnight (3)_9: -564946062
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

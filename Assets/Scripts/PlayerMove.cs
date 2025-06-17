@@ -2,9 +2,10 @@ using UnityEngine;
 
 public enum PlayerBehave
 {
-    Run,
+    Run = 0,
+    Idle,
     Jump,
-    Land
+    Land,
 }
 
 public class PlayerMove : MonoBehaviour
@@ -18,7 +19,7 @@ public class PlayerMove : MonoBehaviour
         get => _currentHeight;
         set
         {
-            if(value != _currentHeight && PlayerState!=PlayerBehave.Run)
+            if(value != _currentHeight && (int)PlayerState>1)
             {
                 if (value > CurrentHeight)
                 {
@@ -59,6 +60,9 @@ public class PlayerMove : MonoBehaviour
             case PlayerBehave.Jump:
                 _ani.Play("PlayerJump");
                 break;
+            case PlayerBehave.Idle:
+                _ani.Play("PlayerIdle");
+                break;
         }
     }
 
@@ -66,7 +70,7 @@ public class PlayerMove : MonoBehaviour
     {
         _ani=gameObject.GetComponent<Animator>();
         _rb2D = gameObject.GetComponent<Rigidbody2D>();
-        PlayerState = PlayerBehave.Run;
+        PlayerState = PlayerBehave.Idle;
 
     }
 
@@ -89,7 +93,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground")&&PlayerState!=PlayerBehave.Idle)
         {
             ChangeState(PlayerBehave.Run);
         }
