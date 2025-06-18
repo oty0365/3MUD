@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameFlowManager : HalfSingleMono<GameFlowManager>
 {
+    [SerializeField] private GameObject tabPnel;
     private bool _hasStarted;
     public bool HasStarted
     {
@@ -14,13 +15,15 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
                 {
                     StartGame();
                 }
+                _hasStarted = value;
             }
+           
         }
     }
     void Start()
     {
         InitGame();
-        _hasStarted = false;
+        HasStarted = false;
     }
     void Update()
     {
@@ -33,6 +36,9 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
     private void StartGame()
     {
         PlatfromBase.moveSpeed = 1;
+        PlatfromBase.changeMoveSpeed.Invoke();
+        PlayerMove.Instance.ChangeState(PlayerBehave.Run);
+        tabPnel.SetActive(false);
         
     }
 }

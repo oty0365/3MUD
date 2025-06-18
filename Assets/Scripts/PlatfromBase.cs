@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlatfromBase : APoolingObject
 {
-    public static float moveSpeed = 1;
+    public static float moveSpeed;
+    public static Action changeMoveSpeed;
     [SerializeField] protected float localMoveSpeed;
     [SerializeField] private float returnDistance;
     [SerializeField] protected GameObject endOfThisMapObj;
@@ -12,7 +14,8 @@ public class PlatfromBase : APoolingObject
     private void Awake()
     {
         _rb2D = gameObject.GetComponent<Rigidbody2D>();
-        _rb2D.linearVelocity = new Vector2(-(1 * localMoveSpeed), 0);
+        _rb2D.linearVelocity = new Vector2(-(1 * localMoveSpeed*moveSpeed), 0);
+        changeMoveSpeed += ChangeAllMoveSpeed;
     }
     protected virtual void Start()
     {
@@ -33,11 +36,15 @@ public class PlatfromBase : APoolingObject
 
     public override void OnBirth()
     {
-        _rb2D.linearVelocity = new Vector2(-(1 * localMoveSpeed), 0);
+        _rb2D.linearVelocity = new Vector2(-(1 * localMoveSpeed*moveSpeed), 0);
         endOfThisMapObj.SetActive(true);
     }
     public override void OnDeathInit()
     {
         
+    }
+    public void ChangeAllMoveSpeed()
+    {
+        _rb2D.linearVelocity = new Vector2(-(1 * localMoveSpeed*moveSpeed), 0);
     }
 }
