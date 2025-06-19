@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public abstract class Obstacle : APoolingObject
+public abstract class Objectile : APoolingObject
 {
     public static float moveSpeed;
     public static Action changeMoveSpeed;
@@ -33,27 +33,7 @@ public abstract class Obstacle : APoolingObject
 
     public virtual void OnHit()
     {
-        OnHitEffect();
         PlayerInfo.Instance.TakeDamage(damage);
-    }
-    public virtual void OnHitEffect()
-    {
-        UIManager.Instance.ImoPanel.text = "-" + damage;
-        StartCoroutine(HitFlow());
-    }
-    private IEnumerator HitFlow()
-    {
-        var color = UIManager.Instance.ImoPanel.color;
-        color = Color.clear;
-        while (Mathf.Abs(color.a - Color.red.a) < 0.02)
-        {
-            color = Color.Lerp(color, Color.red, Time.deltaTime * 10f);
-        }
-        yield return new WaitForSeconds(0.1f);
-        while (Mathf.Abs(color.a - Color.clear.a) < 0.02)
-        {
-            color = Color.Lerp(color, Color.clear, Time.deltaTime * 10f);
-        }
     }
 
     public virtual void OnInit()

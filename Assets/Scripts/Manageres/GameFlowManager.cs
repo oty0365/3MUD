@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameFlowManager : HalfSingleMono<GameFlowManager>
@@ -32,26 +33,32 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
     private void InitGame()
     {
         PlatfromBase.moveSpeed = 0;
-        Obstacle.moveSpeed = 0;
+        Objectile.moveSpeed = 0;
     }
     private void StartGame()
     {
-        Obstacle.moveSpeed = 1;
+        Objectile.moveSpeed = 1;
         PlatfromBase.moveSpeed = 1;
         PlatfromBase.changeMoveSpeed.Invoke();
         PlayerMove.Instance.ChangeState(PlayerBehave.Run);
-        UIManager.Instance.ImoPanel.gameObject.SetActive(false);
+        //UIManager.Instance.ImoPanel.gameObject.SetActive(false);
         ObstacleGenerator.Instance.StartSpawn();
         
     }
-    public void StopGame()
+    public void EndGame()
     {
+        UIManager.Instance.ManageActionModal(false);
         PlayerInfo.Instance.isAlive = false;
-
         PlatfromBase.moveSpeed = 0;
-        Obstacle.moveSpeed = 0;
+        Objectile.moveSpeed = 0;
         PlatfromBase.changeMoveSpeed.Invoke();
-        Obstacle.changeMoveSpeed.Invoke();
+        Objectile.changeMoveSpeed.Invoke();
         PlayerMove.Instance.ChangeState(PlayerBehave.Death);
+        StartCoroutine(EndGameFlow());
+    }
+    private IEnumerator EndGameFlow()
+    {
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.DeathModal();
     }
 }

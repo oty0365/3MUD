@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RockObjstacle : Obstacle
+public class RockObjstacle : Objectile
 {
 
 }

@@ -126,6 +126,9 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
 
     public void ChangeState(PlayerBehave newState)
     {
-        PlayerState = newState;
+        if (PlayerState != PlayerBehave.Death)
+        {
+            PlayerState = newState;
+        }
     }
 }

@@ -37,7 +37,8 @@ public class ObstacleGenerator : HalfSingleMono<ObstacleGenerator>
         while (true)
         {
             yield return new WaitForSeconds(spawnDuration.GetRandom());
-            ObjectPooler.Instance.Get(spawnList[0], gameObject.transform.position, Vector3.zero);
+            var index = UnityEngine.Random.Range(0, spawnList.Count);
+            ObjectPooler.Instance.Get(spawnList[index], gameObject.transform.position, Vector3.zero);
         }
     }
 }
