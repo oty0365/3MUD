@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlatfromBase : APoolingObject
+public abstract class PlatfromBase : APoolingObject
 {
     public static float moveSpeed;
     public static Action changeMoveSpeed;

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public enum PoolObjectType
 {
-    PlatForm,
+    PlainPlatForm1,
+    RockObstacle,
 }
 public class ObjectPooler : HalfSingleMono<ObjectPooler>
 {
