@@ -5,7 +5,8 @@ public enum PoolObjectType
 {
     PlainPlatForm1,
     RockObstacle,
-    Coin
+    Coin,
+    CoinParticle
 }
 public class ObjectPooler : HalfSingleMono<ObjectPooler>
 {

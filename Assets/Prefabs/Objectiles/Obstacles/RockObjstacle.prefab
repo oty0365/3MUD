@@ -131,6 +131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 1
   localMoveSpeed: 2
+  spawnTime:
+    min: 2.5
+    max: 4.5
   localHeight: 0.64
   damage: 10
   _rb2D: {fileID: 7591204721141587475}

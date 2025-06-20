@@ -167,7 +167,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 2
   localMoveSpeed: 2
-  localHeight: 0.55
+  spawnTime:
+    min: 0.4
+    max: 1.5
+  colideParticle: {fileID: 2403886107960062240, guid: 89eac6ccb46a9d6488009b6750218fa1, type: 3}
+  localHeight: 0.48
   damage: 0
   _rb2D: {fileID: 7595955190349672769}
   amount: 1

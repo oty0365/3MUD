@@ -8,6 +8,9 @@ public abstract class Objectile : APoolingObject
     public static Action changeMoveSpeed;
 
     public float localMoveSpeed;
+    public FloatRange spawnTime;
+    public APoolingObject colideParticle;
+
 
     [SerializeField] private float localHeight;
     [SerializeField] protected float damage;
@@ -27,6 +30,11 @@ public abstract class Objectile : APoolingObject
     {
         if (collision.CompareTag("Player"))
         {
+            if (colideParticle != null)
+            {
+                ObjectPooler.Instance.Get(colideParticle, collision.transform.position, Vector3.zero);
+            }
+
             OnHit();
         }
     }

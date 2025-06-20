@@ -12,6 +12,33 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
     private Coroutine _currentHitFlow;
     private Coroutine _currentInfiateTimeFlow;
     private int _currentRunCoinCount;
+    private float _currentRunDeffence;
+    private float _currentRunAttack;
+    private float CurrentRunDeffence
+    {
+        get => _currentRunDeffence;
+        set
+        {
+            _currentRunDeffence = value;
+            //UIManager.Instance.statusModal.deffendTmp.text = _currentRunDeffence.ToString();
+        }
+    }
+    public float CurrentRunAttack
+    {
+        get => _currentRunAttack;
+        set
+        {
+            if (value <= 0)
+            {
+                _currentRunAttack = 0;
+            }
+            else
+            {
+                _currentRunAttack = value;
+            }
+            //UIManager.Instance.statusModal.attackTmp.text = _currentRunAttack.ToString();
+        }
+    }
     public int CurrentRunCoinCount
     {
         get => _currentRunCoinCount;
@@ -58,7 +85,31 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
         }
 
     }
-    public virtual void OnHitEffect(float damage)
+    public void CoinConsume(int coin)
+    {
+        CurrentRunCoinCount += 1;
+        OnCoinEffect(coin);
+
+    }
+    private void OnCoinEffect(int coin)
+    {
+        if (coin > 0)
+        {
+            UIManager.Instance.ImoPanel.text = "+"+coin;
+        }
+        else
+        {
+            UIManager.Instance.ImoPanel.text = "-" + coin;
+        }
+        if (_currentHitFlow != null)
+        {
+            StopCoroutine(_currentHitFlow);
+        }
+        _currentHitFlow = StartCoroutine(HitFlow(Color.yellow));
+
+
+    }
+    private void OnHitEffect(float damage)
     {
         if (PlayerCurHp != 0)
         {
@@ -67,20 +118,20 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             {
                 StopCoroutine(_currentHitFlow);
             }
-            _currentHitFlow = StartCoroutine(HitFlow());
+            _currentHitFlow = StartCoroutine(HitFlow(Color.red));
             if (_currentInfiateTimeFlow == null)
             {
                 _currentInfiateTimeFlow = StartCoroutine(InfinateTimeFlow());
             }
         }
     }
-    private IEnumerator HitFlow()
+    private IEnumerator HitFlow(Color targetColor)
     {
         var panel = UIManager.Instance.ImoPanel;
         panel.color = Color.clear;
-        while (Mathf.Abs(panel.color.a - Color.red.a) > 0.02f)
+        while (Mathf.Abs(panel.color.a - targetColor.a) > 0.02f)
         {
-            panel.color = Color.Lerp(panel.color, Color.red, Time.deltaTime * 10f);
+            panel.color = Color.Lerp(panel.color, targetColor, Time.deltaTime * 10f);
             yield return null;
         }
         yield return new WaitForSeconds(0.17f);

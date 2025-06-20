@@ -7,6 +7,7 @@ public class UIManager : HalfSingleMono<UIManager>
     public TextMeshPro ImoPanel;
     public Slider hpBarUI;
     public DeathModal deathModal;
+    public StatusModal statusModal;
     public Image jumpBtn;
     public Image slideBtn;
     public Image[] itemBtn;

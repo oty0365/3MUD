@@ -11,10 +11,14 @@ DieMsg-8,3,1,"전설의 용사"라며?,They called you a *legendary hero*?
 DieMsg-9,3,1,그건 피해야지{COMMA} 진짜…,You were supposed to roll{COMMA} not *tank* it.
 DieMsg-10,3,1,심지어 튜토리얼인데…,It was... the tutorial...
 DieMsg-11,3,1,NPC도 널 무시할 듯,Even the NPCs will talk behind your back.
-DieMsg-12,3,1,너의 엘릭서, 그냥 버려질 운명,Your elixir? Spilled and wasted. Like your potential.
-DieMsg-13,3,1,자네, 점프와 슬라이드 버튼은 있는가?,Thy dodge key... didst thou forget it?
+DieMsg-12,3,1,너의 엘릭서... 그냥 버려질 운명,Your elixir? Spilled and wasted. Like your potential.
+DieMsg-13,3,1,자네{COMMA} 점프와 슬라이드 버튼은 있는가?,Thy dodge key... didst thou forget it?
 DieMsg-14,3,1,카메라 탓 하지 마라,Do not blame the sacred camera angle.
 DieMsg-15,3,1,이건 어쩔 수 없었다고 합리화 중…,Convincing thyself: “It was unwinnable.”
 PressToRespawn,3,1,<모험 종료>,<End Your Journy>
 ObtainedGold,1,1,획득한 골드,Golds You Cosumed
 RunAmount,1,1,모험한 거리,Distance Adventured
+AttackTmp,1,1,근력,ATK
+DeffendTmp1,1,강건,DEF
+SpeedTmp,1,1,기량,INT
+WillTmp,1,1,의지,WIP
