@@ -47,7 +47,7 @@ public class DeathModal : MonoBehaviour
         var index = Random.Range(1, 16);
         msgTmp.text = scripts.scripts["DieMsg-" + index].currentText;
         goldTextTmp.text = scripts.scripts["ObtainedGold"].currentText;
-        goldTmp.text = PlayerInfo.Instance.CurrentRunCoinCount.ToString();
+        goldTmp.text = PlayerStatus.Instance.IsAlive.ToString();
         runTextTmp.text = scripts.scripts["RunAmount"].currentText;
         restartTmp.text = scripts.scripts["PressToRespawn"].currentText;
     }

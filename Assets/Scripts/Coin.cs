@@ -5,7 +5,7 @@ public class Coin : Objectile
     public int amount;
     public override void OnHit()
     {
-        PlayerInfo.Instance.CoinConsume(amount);
+        PlayerStatus.Instance.CoinConsume(amount);
         Death();
     }
 }

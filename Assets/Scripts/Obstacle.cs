@@ -41,7 +41,7 @@ public abstract class Objectile : APoolingObject
 
     public virtual void OnHit()
     {
-        PlayerInfo.Instance.TakeDamage(damage);
+        PlayerStatus.Instance.TakeDamage(damage);
     }
 
     public virtual void OnInit()

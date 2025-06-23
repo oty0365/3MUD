@@ -17,4 +17,13 @@ public class StatusModal : MonoBehaviour
     [SerializeField] private Image manaStoneImg;
     public TextMeshProUGUI manaStoneTmp;
 
+    public void InitStatusModal()
+    {
+        var script = Scripter.Instance;
+        attackTextTmp.text = script.scripts["AttackTmp"].currentText;
+        deffendTextTmp.text = script.scripts["DeffendTmp"].currentText;
+        speedTextTmp.text = script.scripts["SpeedTmp"].currentText;
+        willTextTmp.text = script.scripts["WillTmp"].currentText;
+
+    }
 }

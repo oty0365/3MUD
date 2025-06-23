@@ -948,8 +948,9 @@ GameObject:
   - component: {fileID: 326025118}
   - component: {fileID: 326025120}
   - component: {fileID: 326025121}
-  - component: {fileID: 326025122}
   - component: {fileID: 326025123}
+  - component: {fileID: 326025124}
+  - component: {fileID: 326025125}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1135,22 +1136,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &326025122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326025115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90a2630e89fc5ff41a005e891dd134fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAlive: 0
-  isInfinate: 0
-  playerInfiateTime: 1
-  playerMaxHp: 30
 --- !u!114 &326025123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,6 +1156,31 @@ MonoBehaviour:
   - key: 4
     pos: {x: 0.07242048, y: -0.6401135}
     size: {x: 0.8, y: 0.973786}
+--- !u!114 &326025124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326025115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2155da303ceec134dbbcb26ed86def5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &326025125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326025115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d60816c42b3c244864610f1be165ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountPanel: {fileID: 1788447053}
 --- !u!1 &405941542
 GameObject:
   m_ObjectHideFlags: 0
@@ -3064,10 +3074,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7151c4137422b4b9a969d76c64a05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ImoPanel: {fileID: 1788447053}
   hpBarUI: {fileID: 243887393}
   deathModal: {fileID: 1966829810}
-  statusModal: {fileID: 0}
+  statusModal: {fileID: 1993192263}
   jumpBtn: {fileID: 520352435}
   slideBtn: {fileID: 1262948116}
   itemBtn:
@@ -4824,6 +4833,7 @@ GameObject:
   - component: {fileID: 1993192260}
   - component: {fileID: 1993192259}
   - component: {fileID: 1993192258}
+  - component: {fileID: 1993192263}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4928,6 +4938,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1993192263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993192257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45f24dec7dcf9e4f9ab1f775bc5a129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTextTmp: {fileID: 1927454700}
+  attackTmp: {fileID: 300754183}
+  deffendTextTmp: {fileID: 1584542244}
+  deffendTmp: {fileID: 895988412}
+  speedTextTmp: {fileID: 591369025}
+  speedTmp: {fileID: 201856583}
+  willTextTmp: {fileID: 186339366}
+  willTmp: {fileID: 1261082140}
+  coinImg: {fileID: 1045647294}
+  coinTmp: {fileID: 1568890072}
+  manaStoneImg: {fileID: 1225661199}
+  manaStoneTmp: {fileID: 1008280256}
 --- !u!1 &2090135705
 GameObject:
   m_ObjectHideFlags: 0

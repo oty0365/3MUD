@@ -19,6 +19,6 @@ PressToRespawn,3,1,<모험 종료>,<End Your Journy>
 ObtainedGold,1,1,획득한 골드,Golds You Cosumed
 RunAmount,1,1,모험한 거리,Distance Adventured
 AttackTmp,1,1,근력,ATK
-DeffendTmp1,1,강건,DEF
+DeffendTmp,1,1,강건,DEF
 SpeedTmp,1,1,기량,INT
 WillTmp,1,1,의지,WIP

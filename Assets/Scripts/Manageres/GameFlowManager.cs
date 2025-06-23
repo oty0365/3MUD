@@ -41,6 +41,7 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
         PlatfromBase.moveSpeed = 1;
         PlatfromBase.changeMoveSpeed.Invoke();
         PlayerMove.Instance.ChangeState(PlayerBehave.Run);
+        PlayerStatus.Instance.onPlayerDeath += EndGame;
         //UIManager.Instance.ImoPanel.gameObject.SetActive(false);
         ObstacleGenerator.Instance.StartSpawn();
         
@@ -48,7 +49,7 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
     public void EndGame()
     {
         UIManager.Instance.ManageActionModal(false);
-        PlayerInfo.Instance.isAlive = false;
+        PlayerStatus.Instance.IsAlive = false;
         PlatfromBase.moveSpeed = 0;
         Objectile.moveSpeed = 0;
         PlatfromBase.changeMoveSpeed.Invoke();
