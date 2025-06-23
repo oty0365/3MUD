@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 
-public enum PlayerEffets
+public enum PlayerEffects
 {
     Hit,
     CoinConsume,
@@ -18,15 +20,16 @@ public class PlayerEffecter : HalfSingleMono<PlayerEffecter>
     private SpriteRenderer _sr;
     private Coroutine _currentHitFlow;
     private Coroutine _currentInfiateBlinkFlow;
+    //private Dictionary<PlayerEffects,Action> e
     //func-public
-    public void PlayPlayerEffect(PlayerEffets playerEffets,float amount)
+    public void PlayPlayerEffect(PlayerEffects playerEffets,float amount)
     {
         switch (playerEffets)
         {
-            case PlayerEffets.Hit:
+            case PlayerEffects.Hit:
                 OnHitEffect(amount);
                 break;
-            case PlayerEffets.CoinConsume:
+            case PlayerEffects.CoinConsume:
                 OnCoinEffect((int)amount);
                 break;
         }

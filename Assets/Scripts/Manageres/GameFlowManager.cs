@@ -40,7 +40,7 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
         Objectile.moveSpeed = 1;
         PlatfromBase.moveSpeed = 1;
         PlatfromBase.changeMoveSpeed.Invoke();
-        PlayerMove.Instance.ChangeState(PlayerBehave.Run);
+        PlayerBehavior.Instance.ChangeState(PlayerBehave.Run);
         PlayerStatus.Instance.onPlayerDeath += EndGame;
         //UIManager.Instance.ImoPanel.gameObject.SetActive(false);
         ObstacleGenerator.Instance.StartSpawn();
@@ -54,7 +54,7 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
         Objectile.moveSpeed = 0;
         PlatfromBase.changeMoveSpeed.Invoke();
         Objectile.changeMoveSpeed.Invoke();
-        PlayerMove.Instance.ChangeState(PlayerBehave.Death);
+        PlayerBehavior.Instance.ChangeState(PlayerBehave.Death);
         StartCoroutine(EndGameFlow());
     }
     private IEnumerator EndGameFlow()

@@ -8,7 +8,7 @@ public class MapGenerator : MonoBehaviour
     
     void Start()
     {
-        _target = PlayerInfo.Instance.gameObject;
+        _target = PlayerStatus.Instance.gameObject;
     }
     void Update()
     {

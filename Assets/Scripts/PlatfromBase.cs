@@ -19,7 +19,7 @@ public abstract class PlatfromBase : APoolingObject
     }
     protected virtual void Start()
     {
-        _target = PlayerInfo.Instance.gameObject;
+        _target = PlayerStatus.Instance.gameObject;
     }
     protected virtual void Update()
     {

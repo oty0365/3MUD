@@ -1,20 +1,13 @@
+using System;
 using UnityEngine;
 
-public enum PlayerBehave
-{
-    Run = 0,
-    Idle,
-    Jump,
-    Land,
-    Slide,
-    Death
-}
-
+[RequireComponent(typeof(PlayerBehavior))]
 public class PlayerMove : HalfSingleMono<PlayerMove>
 {
+    public event Action<PlayerBehave> setState;
+    public event Func<PlayerBehave,bool> checkCurrentState;
+
     private Rigidbody2D _rb2D;
-    private Animator _ani;
-    private PlayerBehave _playerState;
     private float _currentHeight;
 
     public float CurrentHeight
@@ -22,67 +15,29 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
         get => _currentHeight;
         set
         {
-            if (Mathf.Abs(value - _currentHeight) > 0.01f &&
-                (_playerState == PlayerBehave.Jump || _playerState == PlayerBehave.Land))
+            if (Mathf.Abs(value - _currentHeight) > 0.01f && ((bool)checkCurrentState?.Invoke(PlayerBehave.Jump) || (bool)checkCurrentState?.Invoke(PlayerBehave.Land)))
             {
                 if (value > _currentHeight)
                 {
-                    ChangeState(PlayerBehave.Jump);
+                    setState?.Invoke(PlayerBehave.Jump);
                 }
                 else
                 {
-                    ChangeState(PlayerBehave.Land);
+                    setState?.Invoke(PlayerBehave.Land);
                 }
                 _currentHeight = value;
             }
         }
     }
 
-    public PlayerBehave PlayerState
-    {
-        get => _playerState;
-        set
-        {
-            if (value != _playerState)
-            {
-                _playerState = value;
-                AnimationController();
-            }
-        }
-    }
 
-    private void AnimationController()
-    {
-        switch (PlayerState)
-        {
-            case PlayerBehave.Run:
-                PlayerInteraction.Instance.ChangeHitBox(PlayerState);
-                _ani.Play("PlayerRun");
-                break;
-            case PlayerBehave.Land:
-                _ani.Play("PlayerLand");
-                break;
-            case PlayerBehave.Jump:
-                _ani.Play("PlayerJump");
-                break;
-            case PlayerBehave.Idle:
-                _ani.Play("PlayerIdle");
-                break;
-            case PlayerBehave.Slide:
-                PlayerInteraction.Instance.ChangeHitBox(PlayerState);
-                _ani.Play("PlayerSlide");
-                break;
-            case PlayerBehave.Death:
-                _ani.Play("PlayerDeath");
-                break;
-        }
-    }
+
+ 
 
     void Start()
     {
-        _ani = GetComponent<Animator>();
         _rb2D = GetComponent<Rigidbody2D>();
-        PlayerState = PlayerBehave.Idle;
+        PlayerInteraction.Instance.setOnGround += GroundCheck;
         _currentHeight = _rb2D.position.y;
     }
 
@@ -93,42 +48,37 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
 
     public void Jump()
     {
-        if (PlayerState == PlayerBehave.Run)
+        var result = checkCurrentState?.Invoke(PlayerBehave.Run);
+        if ((bool)result)
         {
             _rb2D.AddForce(Vector2.up * 8f, ForceMode2D.Impulse);
-            ChangeState(PlayerBehave.Jump);
+            setState?.Invoke(PlayerBehave.Jump);
         }
     }
 
     public void StartSlide()
     {
-        if (PlayerState == PlayerBehave.Run)
+        var result = checkCurrentState?.Invoke(PlayerBehave.Run);
+        if ((bool)result)
         {
-            ChangeState(PlayerBehave.Slide);
+            setState?.Invoke(PlayerBehave.Slide);
         }
     }
 
     public void EndSlide()
     {
-        if (PlayerState == PlayerBehave.Slide)
+        var result = checkCurrentState?.Invoke(PlayerBehave.Slide);
+        if ((bool)result)
         {
-            ChangeState(PlayerBehave.Run);
+            setState?.Invoke(PlayerBehave.Run);
+        }
+    }
+    public void GroundCheck()
+    {
+        if (!(bool)checkCurrentState?.Invoke(PlayerBehave.Idle) && !(bool)checkCurrentState?.Invoke(PlayerBehave.Slide))
+        {
+            setState?.Invoke(PlayerBehave.Run);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Ground") && PlayerState != PlayerBehave.Idle && PlayerState != PlayerBehave.Slide)
-        {
-            ChangeState(PlayerBehave.Run);
-        }
-    }
-
-    public void ChangeState(PlayerBehave newState)
-    {
-        if (PlayerState != PlayerBehave.Death)
-        {
-            PlayerState = newState;
-        }
-    }
 }

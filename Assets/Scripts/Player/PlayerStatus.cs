@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStatus : HalfSingleMono<PlayerStatus>
 {
     //public
-    public event Action<PlayerEffets, float> playerInteractEffects;
+    public event Action<PlayerEffects, float> playerInteractEffects;
     public event Action<float> blinkEffect;
     public event Action<float> onHpChangeUI;
     public event Action<float> onMaxHpChangeUI;
@@ -75,7 +75,6 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         set
         {
             _currentRunDeffence = value;
-            //UIManager.Instance.statusModal.deffendTmp.text = _currentRunDeffence.ToString();
         }
     }
     public float CurrentRunAttack
@@ -91,7 +90,6 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             {
                 _currentRunAttack = value;
             }
-            //UIManager.Instance.statusModal.attackTmp.text = _currentRunAttack.ToString();
         }
     }
     public int CurrentRunCoinCount
@@ -130,7 +128,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         if (!IsInfinate)
         {
             PlayerCurHp -= amount;
-            playerInteractEffects?.Invoke(PlayerEffets.Hit, amount);
+            playerInteractEffects?.Invoke(PlayerEffects.Hit, amount);
             SetInfinateTime(PlayerInfinateTime);
             blinkEffect?.Invoke(PlayerInfinateTime);
         }
@@ -139,7 +137,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
     public void CoinConsume(int amount)
     {
         CurrentRunCoinCount += amount;
-        playerInteractEffects?.Invoke(PlayerEffets.CoinConsume, amount);
+        playerInteractEffects?.Invoke(PlayerEffects.CoinConsume, amount);
     }
     public void SetInfinateTime(float time)
     {
