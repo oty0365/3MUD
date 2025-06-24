@@ -32,6 +32,9 @@ public class PlayerEffecter : HalfSingleMono<PlayerEffecter>
             case PlayerEffects.CoinConsume:
                 OnCoinEffect((int)amount);
                 break;
+            case PlayerEffects.Heal:
+                OnHealEffect(amount);
+                break;
         }
     }
     public void InfinateBlink(float time)
@@ -58,8 +61,15 @@ public class PlayerEffecter : HalfSingleMono<PlayerEffecter>
             StopCoroutine(_currentHitFlow);
         }
         _currentHitFlow = StartCoroutine(AmountTextFlow(Color.yellow));
-
-
+    }
+    private void OnHealEffect(float heal)
+    {
+        amountPanel.text = "+" + heal;
+        if (_currentHitFlow != null)
+        {
+            StopCoroutine(_currentHitFlow);
+        }
+        _currentHitFlow = StartCoroutine(AmountTextFlow(Color.green));
     }
     private void OnHitEffect(float damage)
     {

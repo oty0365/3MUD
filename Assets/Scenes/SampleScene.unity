@@ -832,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23162697, y: 0.31930184}
   m_AnchorMax: {x: 0.4677731, y: 0.41330186}
-  m_AnchoredPosition: {x: 234.68727, y: 10.687917}
+  m_AnchoredPosition: {x: 234.68713, y: 10.687917}
   m_SizeDelta: {x: 223.05899, y: 72.42611}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &300754183
@@ -3356,7 +3356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6211711, y: 0.22552368}
   m_AnchorMax: {x: 1, y: 0.31930184}
-  m_AnchoredPosition: {x: 231.50066, y: 18.421309}
+  m_AnchoredPosition: {x: 231.50067, y: 18.421309}
   m_SizeDelta: {x: 354.62915, y: 72.257805}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1261082140
@@ -3890,7 +3890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.162, y: 0.110556275}
   m_AnchorMax: {x: 0.49352226, y: 0.20434912}
-  m_AnchoredPosition: {x: 234.7823, y: 29.378616}
+  m_AnchoredPosition: {x: 234.78223, y: 29.378616}
   m_SizeDelta: {x: 332.02283, y: 72.01898}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1568890072
@@ -4554,7 +4554,8 @@ MonoBehaviour:
     - {fileID: 4767310898476764349, guid: 2ceff32a8d8dc6646b759c1509c991d1, type: 3}
     generateType: 2
   runesAndItems:
-    spawnList: []
+    spawnList:
+    - {fileID: 5800507814998023274, guid: 78c2790bf81c22f439792ca6c789d55d, type: 3}
     generateType: 0
 --- !u!4 &1796394653
 Transform:

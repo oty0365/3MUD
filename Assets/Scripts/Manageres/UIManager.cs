@@ -46,7 +46,6 @@ public class UIManager : HalfSingleMono<UIManager>
     }
     public void OnMaxHpChange(float amount)
     {
-        Debug.Log(amount);
         hpBarUI.maxValue = amount;
     }
     public void OnHpChange(float amount)

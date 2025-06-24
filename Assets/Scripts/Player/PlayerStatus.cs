@@ -128,9 +128,12 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         if (!IsInfinate)
         {
             PlayerCurHp -= amount;
-            playerInteractEffects?.Invoke(PlayerEffects.Hit, amount);
-            SetInfinateTime(PlayerInfinateTime);
-            blinkEffect?.Invoke(PlayerInfinateTime);
+            if (PlayerCurHp > 0)
+            {
+                SetInfinateTime(PlayerInfinateTime);
+                playerInteractEffects?.Invoke(PlayerEffects.Hit, amount);
+                blinkEffect?.Invoke(PlayerInfinateTime);
+            }
         }
 
     }
@@ -138,6 +141,10 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
     {
         CurrentRunCoinCount += amount;
         playerInteractEffects?.Invoke(PlayerEffects.CoinConsume, amount);
+    }
+    public void Heal(float amount)
+    {
+        PlayerCurHp += amount;
     }
     public void SetInfinateTime(float time)
     {
@@ -161,6 +168,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         PlayerCurHp = PlayerMaxHp;
         IsAlive = true;
         IsInfinate = false;
+        PlayerInfinateTime = 1f;
     }
     
     //lifefunc-private

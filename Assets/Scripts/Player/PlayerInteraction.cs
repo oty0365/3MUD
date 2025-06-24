@@ -24,6 +24,7 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
         {
             moveSetColiders.Add(i.key, (i.pos, i.size));
         }
+        PlayerBehavior.Instance.setColider += ChangeHitBox;
     }
 
     void Update()
@@ -32,8 +33,12 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
     }
     public void ChangeHitBox(PlayerBehave behave)
     {
-        boxCol.size = moveSetColiders[behave].Item2;
-        boxCol.offset = moveSetColiders[behave].Item1;
+        if (moveSetColiders.ContainsKey(behave))
+        {
+            boxCol.size = moveSetColiders[behave].Item2;
+            boxCol.offset = moveSetColiders[behave].Item1;
+        }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

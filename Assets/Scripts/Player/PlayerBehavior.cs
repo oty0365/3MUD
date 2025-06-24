@@ -1,6 +1,5 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public enum PlayerBehave
 {
@@ -14,6 +13,7 @@ public enum PlayerBehave
 
 public class PlayerBehavior : HalfSingleMono<PlayerBehavior>
 {
+    public event Action<PlayerBehave> setColider;
     private Animator _ani;
     private PlayerBehave _playerState;
     public PlayerBehave PlayerState
@@ -23,8 +23,9 @@ public class PlayerBehavior : HalfSingleMono<PlayerBehavior>
         {
             if (value != _playerState)
             {
+                AnimationController(value);
                 _playerState = value;
-                AnimationController();
+                setColider?.Invoke(PlayerState);
             }
         }
     }
@@ -43,9 +44,34 @@ public class PlayerBehavior : HalfSingleMono<PlayerBehavior>
         }
         return false;
     }
-    private void AnimationController()
+    private void AnimationController(PlayerBehave newState)
     {
-        _ani.SetInteger("Behavior",(int)PlayerState);
+        if (newState == PlayerBehave.Death)
+        {
+            _ani.SetTrigger("Death");
+        }
+        else
+        {
+            HandleStateTransition(newState);
+        }
+
+        _playerState = newState;
+    }
+
+    private void HandleStateTransition(PlayerBehave newState)
+    {
+        bool wasIdle = (_playerState == PlayerBehave.Idle);
+        bool willBeIdle = (newState == PlayerBehave.Idle);
+
+        if (wasIdle && !willBeIdle)
+        {
+            _ani.SetTrigger("Start");
+        }
+        else if (!wasIdle && willBeIdle)
+        {
+            _ani.SetTrigger("Return");
+        }
+        _ani.SetInteger("Behavior", (int)newState);
     }
     private void Start()
     {
