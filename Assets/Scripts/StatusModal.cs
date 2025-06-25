@@ -26,4 +26,10 @@ public class StatusModal : MonoBehaviour
         willTextTmp.text = script.scripts["WillTmp"].currentText;
 
     }
+
+    public void SetAttack(float value) => attackTmp.text = value.ToString();
+    public void SetDefense(float value) => deffendTmp.text = value.ToString();
+    public void SetSpeed(float value) => speedTmp.text = value.ToString();
+    public void SetWill(float value) => willTmp.text = value.ToString();
+    public void SetCoin(int value) => coinTmp.text = value.ToString();
 }

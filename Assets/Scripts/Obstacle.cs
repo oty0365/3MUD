@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Objectile : APoolingObject
 {
     public static float moveSpeed;
-    public static Action changeMoveSpeed;
+    public static Action<float> changeMoveSpeed;
 
     public float localMoveSpeed;
     public FloatRange spawnTime;
@@ -55,8 +55,9 @@ public abstract class Objectile : APoolingObject
         transform.localPosition = new Vector3(local.x, localHeight, local.z);
     }
 
-    public void ChangeAllMoveSpeed()
+    public void ChangeAllMoveSpeed(float amount)
     {
+        moveSpeed = amount;
         _rb2D.linearVelocity = new Vector2(-localMoveSpeed * moveSpeed, 0);
     }
 }

@@ -41,7 +41,7 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
         _currentHeight = _rb2D.position.y;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         CurrentHeight = _rb2D.position.y;
     }

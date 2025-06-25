@@ -7,9 +7,13 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
     //public
     public event Action<PlayerEffects, float> playerInteractEffects;
     public event Action<float> blinkEffect;
-    public event Action<float> onHpChangeUI;
-    public event Action<float> onMaxHpChangeUI;
-    public event Action<int> onCoinChangeUI;
+    public Action<float> onHpChangeUI;
+    public Action<float> onAtkChangeUI;
+    public Action<float> onDefChangeUI;
+    public Action<float> onSpdChangeUI;
+    public Action<float> onWipChangeUI;
+    public Action<float> onMaxHpChangeUI;
+    public Action<int> onCoinChangeUI;
     public event Action onPlayerDeath;
     //private
     private bool _isAlive;
@@ -20,6 +24,8 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
     private int _currentRunCoinCount;
     private float _currentRunDeffence;
     private float _currentRunAttack;
+    private float _currentRunSpeed;
+    private float _currentRunWill;
 
     private Coroutine _currentInfinateTimeFlow;
     //get-set
@@ -69,12 +75,13 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         }
     }
 
-    private float CurrentRunDeffence
+    public float CurrentRunDeffence
     {
         get => _currentRunDeffence;
         set
         {
             _currentRunDeffence = value;
+            onDefChangeUI?.Invoke(_currentRunDeffence);
         }
     }
     public float CurrentRunAttack
@@ -90,6 +97,33 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             {
                 _currentRunAttack = value;
             }
+            onAtkChangeUI?.Invoke(_currentRunAttack);
+        }
+    }
+    public float CurrentRunSpeed
+    {
+        get => _currentRunSpeed;
+        set
+        {
+            if (value <= 0)
+            {
+                _currentRunSpeed = 0;
+            }
+            else
+            {
+                _currentRunSpeed = value;
+            }
+            onSpdChangeUI?.Invoke(_currentRunSpeed);
+
+        }
+    }
+    public float CurrentRunWill
+    {
+        get => _currentRunWill;
+        set
+        {
+            _currentRunWill = value;
+            onWipChangeUI?.Invoke(_currentRunSpeed);
         }
     }
     public int CurrentRunCoinCount
@@ -98,7 +132,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         set
         {
             _currentRunCoinCount = value;
-            onCoinChangeUI?.Invoke(value);
+            onCoinChangeUI?.Invoke(_currentRunCoinCount);
         }
     }
     public float PlayerCurHp
@@ -145,6 +179,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
     public void Heal(float amount)
     {
         PlayerCurHp += amount;
+        playerInteractEffects?.Invoke(PlayerEffects.Heal, amount);
     }
     public void SetInfinateTime(float time)
     {

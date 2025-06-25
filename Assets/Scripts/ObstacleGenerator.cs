@@ -47,6 +47,7 @@ public class ObstacleGenerator : HalfSingleMono<ObstacleGenerator>
     {
         StartCoroutine(SpawnFlow(obstacles));
         StartCoroutine(SpawnFlow(coins));
+        StartCoroutine(SpawnFlow(runesAndItems));
     }
     private IEnumerator SpawnFlow(GenerateObj generateSets)
     {

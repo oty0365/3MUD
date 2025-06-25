@@ -69,7 +69,7 @@ public class PlayerEffecter : HalfSingleMono<PlayerEffecter>
         {
             StopCoroutine(_currentHitFlow);
         }
-        _currentHitFlow = StartCoroutine(AmountTextFlow(Color.green));
+        _currentHitFlow = StartCoroutine(AmountTextFlow(new Color(32,59,28)));
     }
     private void OnHitEffect(float damage)
     {

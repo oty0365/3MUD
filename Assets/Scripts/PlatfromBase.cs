@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-public abstract class PlatfromBase : APoolingObject
+public abstract class PlatformBase : APoolingObject
 {
     public static float moveSpeed;
-    public static Action changeMoveSpeed;
+    public static Action<float>changeMoveSpeed;
     [SerializeField] protected float localMoveSpeed;
     [SerializeField] private float returnDistance;
     [SerializeField] protected GameObject endOfThisMapObj;
@@ -43,8 +43,9 @@ public abstract class PlatfromBase : APoolingObject
     {
         
     }
-    public void ChangeAllMoveSpeed()
+    public void ChangeAllMoveSpeed(float speed)
     {
+        moveSpeed = speed;
         _rb2D.linearVelocity = new Vector2(-(1 * localMoveSpeed*moveSpeed), 0);
     }
 }
