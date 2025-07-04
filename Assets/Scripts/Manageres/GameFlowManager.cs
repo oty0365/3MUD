@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,11 @@ public interface IEventUpLoader
 
 public class GameFlowManager : HalfSingleMono<GameFlowManager>
 {
+    public event Action startIdel; 
+   // public event 
     public List<MonoBehaviour> eventUpLoaders;
     private bool _hasStarted;
+    
 
     public bool HasStarted
     {
@@ -23,8 +27,13 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
                 {
                     StartGame();
                 }
+                else
+                {
+                    StopGame();
+                }
                 _hasStarted = value;
             }
+            
         }
     }
 
@@ -73,17 +82,31 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
     {
         UIManager.Instance.ManageActionModal(false);
         PlayerStatus.Instance.IsAlive = false;
-        Objectile.moveSpeed = 0;
-        PlatformBase.moveSpeed = 0;
-        Objectile.changeMoveSpeed?.Invoke(0);
-        PlatformBase.changeMoveSpeed?.Invoke(0);
+        StopGame();
         PlayerBehavior.Instance.ChangeState(PlayerBehave.Death);
         StartCoroutine(EndGameFlow());
+    }
+    public void StopGame()
+    {
+        startIdel?.Invoke();
+        Objectile.moveSpeed = 0;
+        PlatformBase.moveSpeed = 0; 
+        Objectile.changeMoveSpeed?.Invoke(0);
+        PlatformBase.changeMoveSpeed?.Invoke(0);
+        ObstacleGenerator.Instance.StopSpawn();
     }
 
     private IEnumerator EndGameFlow()
     {
         yield return new WaitForSeconds(1f);
         UIManager.Instance.DeathModal();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            HasStarted = false;
+            UIManager.Instance.AugmentSelection();
+        }
     }
 }

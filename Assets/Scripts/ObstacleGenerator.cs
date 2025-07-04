@@ -41,14 +41,24 @@ public class ObstacleGenerator : HalfSingleMono<ObstacleGenerator>
     public GenerateObj runesAndItems;
 
     private Dictionary<float, GenerateType> timeTables = new();
-    
+    private Coroutine _obstaclesFlow;
+    private Coroutine _coinsFlow;
+    private Coroutine _runesAndItemsFlow;
+
 
     public void StartSpawn()
     {
-        StartCoroutine(SpawnFlow(obstacles));
-        StartCoroutine(SpawnFlow(coins));
-        StartCoroutine(SpawnFlow(runesAndItems));
+        _obstaclesFlow=StartCoroutine(SpawnFlow(obstacles));
+        _coinsFlow=StartCoroutine(SpawnFlow(coins));
+        _runesAndItemsFlow=StartCoroutine(SpawnFlow(runesAndItems));
     }
+    public void StopSpawn()
+    {
+        StopCoroutine(_obstaclesFlow);
+        StopCoroutine(_coinsFlow);
+        StopCoroutine(_runesAndItemsFlow);
+    }
+
     private IEnumerator SpawnFlow(GenerateObj generateSets)
     {
         while (true)
@@ -90,8 +100,7 @@ public class ObstacleGenerator : HalfSingleMono<ObstacleGenerator>
 
             if (canSpawn)
             {
-                if (timeTables.ContainsKey(currentSpawnTime) &&
-                    timeTables[currentSpawnTime] == generateSets.generateType)
+                if (timeTables.ContainsKey(currentSpawnTime) && timeTables[currentSpawnTime] == generateSets.generateType)
                 {
                     ObjectPooler.Instance.Get(generateSets.spawnList[index], gameObject.transform.position, Vector3.zero);
                     timeTables.Remove(currentSpawnTime);

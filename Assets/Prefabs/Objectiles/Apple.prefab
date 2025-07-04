@@ -4947,7 +4947,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2763517815265448286}
@@ -5090,7 +5090,7 @@ MonoBehaviour:
     min: 5
     max: 20
   colideParticle: {fileID: 0}
-  localHeight: 0.48
+  localHeight: 0.3
   damage: 0
   _rb2D: {fileID: 6130842503445633575}
   amount: 3

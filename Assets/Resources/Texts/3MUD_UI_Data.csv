@@ -20,5 +20,5 @@ ObtainedGold,1,1,획득한 골드,Golds You Cosumed
 RunAmount,1,1,모험한 거리,Distance Adventured
 AttackTmp,1,1,근력,ATK
 DeffendTmp,1,1,강건,DEF
-SpeedTmp,1,1,기량,INT
+SpeedTmp,1,1,기량,DEX
 WillTmp,1,1,의지,WIP

@@ -1,26 +1,35 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+public interface ShowHider
+{
+    public void Show();
+    public void Hide();
+}
 
 public class UIManager : HalfSingleMono<UIManager>,IEventUpLoader
 {
     //public
     //Serializefield-private
     [SerializeField] private Image darkModal;
+    [SerializeField] private TextMeshProUGUI dateTmp;
     [SerializeField] private Slider hpBarUI;
     [SerializeField] private DeathModal deathModal;
     [SerializeField] private StatusModal statusModal;
+    [SerializeField] private AugmentSelectionModal augmentSelectionModal;
     [SerializeField] private Image jumpBtn;
     [SerializeField] private Image slideBtn;
     [SerializeField] private Image[] itemBtn;
     [SerializeField] private Image skillBtn;
     //private
-
+    private Coroutine _currentFadeFlow;
     
     private void Start()
     {
-
+        augmentSelectionModal.Hide();
         //initializePlayer?.Invoke();
     }
 
@@ -37,36 +46,58 @@ public class UIManager : HalfSingleMono<UIManager>,IEventUpLoader
         playerStatus.onSpdChangeUI += OnSpdChange;
         playerStatus.onDefChangeUI += OnDefChange;
         playerStatus.onWipChangeUI += OnWipChange;
+        augmentSelectionModal.fadeOut += DarkFadeOut;
     }
 
     private void InitModal()
     {
-        DarkFade();
-        darkModal.gameObject.SetActive(true);
-        deathModal.gameObject.SetActive(false);
+        SetDarkFade(1);
+        SetDay(1, 1.5f);
+        deathModal.Hide();
         statusModal.InitStatusModal();
         ManageActionModal(true);
 
     }
 
-    public void DarkFade()
+    public void SetDay(int date,float time)
     {
-        Debug.Log(darkModal.material.GetFloat("_Progress"));
-        darkModal.material.SetFloat("_Progress", 1);
+        dateTmp.text = "Day " + date;
+        StartCoroutine(SetDayTextFlow(date, time));
+    }
+    private IEnumerator SetDayTextFlow(int date,float time)
+    {
+        dateTmp.gameObject.SetActive(true);
+        yield return new WaitForSeconds(time);
+        dateTmp.gameObject.SetActive(false);
+        DarkFadeOut();
     }
 
-    public void DarkFadeIn(float duration = 1f)
+    public void SetDarkFade(float amount)
     {
-        StartCoroutine(FadeRoutine(0f, 1f, duration));
+        darkModal.material.SetFloat("_Progress", amount);
     }
 
-    public void DarkFadeOut(float duration = 1f)
+    public void DarkFadeIn()
     {
-        StartCoroutine(FadeRoutine(1f, 0f, duration));
+        if (_currentFadeFlow != null)
+        {
+            StopCoroutine(_currentFadeFlow);
+        }
+        StartCoroutine(FadeRoutine(0f, 1f, 1f));
+    }
+
+    public void DarkFadeOut()
+    {
+        if (_currentFadeFlow != null)
+        {
+            StopCoroutine(_currentFadeFlow);
+        }
+        StartCoroutine(FadeRoutine(1f, 0f,1f));
     }
 
     private IEnumerator FadeRoutine(float from, float to, float duration)
     {
+        darkModal.gameObject.SetActive(true);
         float elapsed = 0f;
         Material mat = darkModal.material;
 
@@ -78,8 +109,11 @@ public class UIManager : HalfSingleMono<UIManager>,IEventUpLoader
             mat.SetFloat("_Progress", progress);
             yield return null;
         }
-
         mat.SetFloat("_Progress", to);
+        if (to <= 0)
+        {
+            darkModal.gameObject.SetActive(false);
+        }
     }
 
     public void ManageActionModal(bool mode)
@@ -94,7 +128,7 @@ public class UIManager : HalfSingleMono<UIManager>,IEventUpLoader
     }
     public void DeathModal()
     {
-        deathModal.gameObject.SetActive(true);
+        deathModal.Show();
         deathModal.StartModal();
     }
     public void OnMaxHpChange(float amount)
@@ -129,6 +163,27 @@ public class UIManager : HalfSingleMono<UIManager>,IEventUpLoader
     {
         OnMaxHpChange(PlayerStatus.Instance.PlayerMaxHp);
         OnHpChange(PlayerStatus.Instance.PlayerCurHp);
+    }
+    private void ReplaceAugmentModal()
+    {
+        augmentSelectionModal.Show();
+        augmentSelectionModal.RandomizeCard();
+    }
+    private IEnumerator AugmentSelectionFlow()
+    {
+        if (_currentFadeFlow != null)
+        {
+            StopCoroutine(_currentFadeFlow);
+        }
+        _currentFadeFlow = StartCoroutine(FadeRoutine(0f, 1f, 1));
+        yield return _currentFadeFlow;
+        yield return new WaitForSeconds(0.5f);
+        ReplaceAugmentModal();
+
+    }
+    public void AugmentSelection()
+    {
+        StartCoroutine(AugmentSelectionFlow());
     }
     
 }

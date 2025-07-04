@@ -1,0 +1,12 @@
+﻿Key,Type,Priority,Ko,En
+RuneDescriptionPannel,1,1,무형의 룬을 입수했다.. \n어떤 모습일까?,Ethereal rune secured... \nIts appearance is shrouded in mystery.
+AttackRuneName,1,1,강자의 룬,Runes Of Champion
+AttackRuneDesc,1,1,근력을 <color=red>3</color>올린다.,Increase ATK by <color=red>3</color>.
+DeffenceRuneName,1,1,성역의 룬,Runes Of Citadel
+DeffenceRuneDesc,1,1,방어력을 <color=blue>2</color>올린다.,Increase DEF by <color=blue>2</color>.
+SpeedRuneName,1,1,기민함의 룬,Runes Of Agility
+SpeedRuneDesc,1,1,기량을 <color=yellow>3</color>올린다.,Increase DEF by <color=yellow>3</color>.
+WillRuneName,1,1,영혼의 룬,Runes Of Soul
+WillRuneDesc,1,1,의지를 4올린다.,Increase WIP by 3.
+HpRuneName,1,1,생명의 룬,Runes Of Life
+HpRuneDesc,1,1,생명력을 <color=green>5</color>올린다.,Increase HP by <color=green>5</color>

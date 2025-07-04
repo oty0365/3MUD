@@ -181,6 +181,10 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         PlayerCurHp += amount;
         playerInteractEffects?.Invoke(PlayerEffects.Heal, amount);
     }
+    public void SetMaxHp(float amount)
+    {
+        PlayerMaxHp += amount;
+    }
     public void SetInfinateTime(float time)
     {
         if (_currentInfinateTimeFlow == null)

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class DeathModal : MonoBehaviour
+public class DeathModal : MonoBehaviour,ShowHider
 {
     private Animator _ani;
     [SerializeField] private TextMeshProUGUI deathTmp;
@@ -26,10 +26,6 @@ public class DeathModal : MonoBehaviour
         ManageDeathModal(false);
         UIManager.Instance.ManageActionModal(true);
     }
-    public void Disable()
-    {
-        gameObject.SetActive(false);
-    }
     public void ManageDeathModal(bool isActive)
     {
         deathTmp.gameObject.SetActive(isActive);
@@ -50,5 +46,13 @@ public class DeathModal : MonoBehaviour
         goldTmp.text = PlayerStatus.Instance.IsAlive.ToString();
         runTextTmp.text = scripts.scripts["RunAmount"].currentText;
         restartTmp.text = scripts.scripts["PressToRespawn"].currentText;
+    }
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }

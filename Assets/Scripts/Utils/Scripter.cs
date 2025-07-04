@@ -29,6 +29,15 @@ public class Scripter : SingleMono<Scripter>
         base.Awake();
         LoadAllCsv();
     }
+    public string Translation(string text)
+    {
+        if (scripts.ContainsKey(text))
+        {
+            return scripts[text].currentText;
+        }
+        return "";
+
+    }
 
     public void LoadAllCsv()
     {

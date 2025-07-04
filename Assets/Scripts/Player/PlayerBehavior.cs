@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public enum PlayerBehave
 {
@@ -35,6 +36,10 @@ public class PlayerBehavior : HalfSingleMono<PlayerBehavior>
         {
             PlayerState = newState;
         }
+    }
+    public void ForceChangeToIdle()
+    {
+        PlayerState = PlayerBehave.Idle;
     }
     public bool CheckBehave(PlayerBehave behave)
     {
@@ -77,6 +82,7 @@ public class PlayerBehavior : HalfSingleMono<PlayerBehavior>
     {
         PlayerMove.Instance.checkCurrentState +=CheckBehave;
         PlayerMove.Instance.setState += ChangeState;
+        GameFlowManager.Instance.startIdel += ForceChangeToIdle;
     }
     protected override void Awake()
     {
