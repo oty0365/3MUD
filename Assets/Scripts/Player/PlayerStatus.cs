@@ -126,7 +126,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         set
         {
             _currentRunWill = value;
-            onWipChangeUI?.Invoke(_currentRunSpeed);
+            onWipChangeUI?.Invoke(_currentRunWill);
         }
     }
 

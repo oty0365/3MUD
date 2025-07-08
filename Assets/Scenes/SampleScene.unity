@@ -4102,7 +4102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2a3df60de153344b272dc5c9e61e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  augmentDatas: {fileID: 11400000, guid: 63b2cdbe798aa9943939d04671dfb2a6, type: 2}
+  augmentDatas: {fileID: 0}
 --- !u!4 &1180547620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7540119894007771839, guid: 7dbf33d3562c56c4da551df1b1b3dacd, type: 3}
@@ -6237,7 +6237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 481236065549825612, guid: 2ceff32a8d8dc6646b759c1509c991d1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4426328514551830307, guid: 2ceff32a8d8dc6646b759c1509c991d1, type: 3}
       propertyPath: m_LocalScale.x
@@ -6298,18 +6298,18 @@ PrefabInstance:
     - target: {fileID: 8845338111111281511, guid: 2ceff32a8d8dc6646b759c1509c991d1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 24bbf9054cba75c42bb785f8ad7a2090, type: 3}
+      objectReference: {fileID: 6573651534179363745, guid: a7dbd245a4c31ab4787d7f8dddc350a0, type: 3}
     - target: {fileID: 8845338111111281511, guid: 2ceff32a8d8dc6646b759c1509c991d1, type: 3}
       propertyPath: m_Color.b
-      value: 0.7320991
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8845338111111281511, guid: 2ceff32a8d8dc6646b759c1509c991d1, type: 3}
       propertyPath: m_Color.g
-      value: 0.96981126
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8845338111111281511, guid: 2ceff32a8d8dc6646b759c1509c991d1, type: 3}
       propertyPath: m_Color.r
-      value: 0.66422915
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8845338111111281511, guid: 2ceff32a8d8dc6646b759c1509c991d1, type: 3}
       propertyPath: m_WasSpriteAssigned
