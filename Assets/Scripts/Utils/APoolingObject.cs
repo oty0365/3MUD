@@ -1,15 +1,7 @@
 using UnityEngine;
-
-public abstract class APoolingObject : MonoBehaviour
+public interface IPoolingObject
 {
-
-    public PoolObjectType objectType;
-
-    public void Death()
-    {
-        OnDeathInit();
-        ObjectPooler.Instance.Return(this);
-    }
-    public abstract void OnBirth();
-    public abstract void OnDeathInit();
+    public PoolObjectType ObjectType { get; set; }
+    void OnBirth();
+    void OnDeathInit();
 }

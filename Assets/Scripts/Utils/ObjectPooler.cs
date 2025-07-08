@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum PoolObjectType
 {
@@ -8,129 +9,157 @@ public enum PoolObjectType
     Coin,
     CoinParticle,
     Apple,
-
 }
+
 public class ObjectPooler : HalfSingleMono<ObjectPooler>
 {
-    [SerializeField] private GameObject retruningParentObj;
+    [FormerlySerializedAs("retruningParentObj")] [SerializeField] private GameObject returningParentObj;
     public GameObject currentReturningParentObj;
-    private Dictionary<PoolObjectType, Queue<APoolingObject>> objectPoolList;
+    private Dictionary<PoolObjectType, Queue<GameObject>> objectPoolList;
+    private Dictionary<GameObject, IPoolingObject> componentCache;
 
     protected override void Awake()
     {
         base.Awake();
-        InitPoollist();
-
+        InitPoolList();
     }
 
     public void ReBakeObjectPooler()
     {
         objectPoolList.Clear();
+        componentCache.Clear();
     }
 
-    public GameObject Get(APoolingObject prefab, Vector2 position, Vector3 rotation)
+    private IPoolingObject GetPoolingComponent(GameObject obj)
     {
-        PoolObjectType key = prefab.objectType;
-        if (!objectPoolList.ContainsKey(key))
+        if (!componentCache.TryGetValue(obj, out IPoolingObject poolObj))
         {
-            objectPoolList[key] = new Queue<APoolingObject>();
+            poolObj = obj.GetComponent<IPoolingObject>();
+            componentCache[obj] = poolObj;
         }
-        APoolingObject obj;
-        if (objectPoolList[key].Count == 0)
-        {
-            obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
-            obj.objectType = key;
-            obj.OnBirth();
-
-        }
-        else
-        {
-            obj = objectPoolList[key].Dequeue();
-            obj.transform.position = position;
-            obj.transform.rotation = Quaternion.Euler(rotation);
-            obj.gameObject.SetActive(true);
-            obj.OnBirth();
-        }
-
-        obj.transform.SetParent(currentReturningParentObj.transform, worldPositionStays: false);
-
-        if (obj != null) obj.gameObject.SetActive(true);
-        return obj.gameObject;
+        return poolObj;
     }
 
-    public GameObject Get(APoolingObject prefab, Vector2 position, Vector3 rotation, Vector2 size)
+    public GameObject Get(GameObject prefab, Vector2 position, Vector3 rotation)
     {
-        PoolObjectType key = prefab.objectType;
-
+        var prefabPool = GetPoolingComponent(prefab);
+        PoolObjectType key = prefabPool.ObjectType;
+        
         if (!objectPoolList.ContainsKey(key))
-            objectPoolList[key] = new Queue<APoolingObject>();
+        {
+            objectPoolList[key] = new Queue<GameObject>();
+        }
 
-        APoolingObject obj;
+        GameObject obj;
+        IPoolingObject poolObj;
 
         if (objectPoolList[key].Count == 0)
         {
             obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
-            obj.transform.localScale = new Vector3(size.x, size.y);
-            obj.objectType = key;
-            obj.OnBirth();
+            poolObj = GetPoolingComponent(obj);
+            poolObj.ObjectType = key;
         }
         else
         {
             obj = objectPoolList[key].Dequeue();
+            poolObj = GetPoolingComponent(obj);
             obj.transform.position = position;
             obj.transform.rotation = Quaternion.Euler(rotation);
-            obj.transform.localScale = new Vector3(size.x, size.y);
-            obj.gameObject.SetActive(true);
-            obj.OnBirth();
+            obj.SetActive(true);
         }
 
         obj.transform.SetParent(currentReturningParentObj.transform, worldPositionStays: false);
-
-        return obj.gameObject;
+        obj.SetActive(true);
+        poolObj.OnBirth();
+        
+        return obj;
     }
-    public GameObject Get(APoolingObject prefab, Transform parent)
+
+    public GameObject Get(GameObject prefab, Vector2 position, Vector3 rotation, Vector2 size)
     {
-        PoolObjectType key = prefab.objectType;
+        var prefabPool = GetPoolingComponent(prefab);
+        PoolObjectType key = prefabPool.ObjectType;
 
         if (!objectPoolList.ContainsKey(key))
-            objectPoolList[key] = new Queue<APoolingObject>();
+            objectPoolList[key] = new Queue<GameObject>();
 
-        APoolingObject obj;
+        GameObject obj;
+        IPoolingObject poolObj;
+
+        if (objectPoolList[key].Count == 0)
+        {
+            obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
+            obj.transform.localScale = new Vector3(size.x, size.y, 1f);
+            poolObj = GetPoolingComponent(obj);
+            poolObj.ObjectType = key;
+        }
+        else
+        {
+            obj = objectPoolList[key].Dequeue();
+            poolObj = GetPoolingComponent(obj);
+            obj.transform.position = position;
+            obj.transform.rotation = Quaternion.Euler(rotation);
+            obj.transform.localScale = new Vector3(size.x, size.y, 1f);
+            obj.SetActive(true);
+        }
+
+        obj.transform.SetParent(currentReturningParentObj.transform, worldPositionStays: false);
+        poolObj.OnBirth();
+        
+        return obj;
+    }
+
+    public GameObject Get(GameObject prefab, Transform parent)
+    {
+        var prefabPool = GetPoolingComponent(prefab);
+        PoolObjectType key = prefabPool.ObjectType;
+
+        if (!objectPoolList.ContainsKey(key))
+            objectPoolList[key] = new Queue<GameObject>();
+
+        GameObject obj;
+        IPoolingObject poolObj;
 
         if (objectPoolList[key].Count == 0)
         {
             obj = Instantiate(prefab, parent);
-            obj.objectType = key;
-            obj.OnBirth();
+            poolObj = GetPoolingComponent(obj);
+            poolObj.ObjectType = key;
         }
         else
         {
             obj = objectPoolList[key].Dequeue();
+            poolObj = GetPoolingComponent(obj);
             obj.transform.parent = parent;
-            obj.gameObject.SetActive(true);
-            obj.OnBirth();
+            obj.SetActive(true);
         }
 
-        return obj.gameObject;
+        poolObj.OnBirth();
+        return obj;
     }
 
-    public void Return(APoolingObject obj)
+    public void Return(GameObject obj)
     {
-        PoolObjectType key = obj.objectType;
+        var poolObj = GetPoolingComponent(obj);
+        PoolObjectType key = poolObj.ObjectType;
 
         if (!objectPoolList.ContainsKey(key))
-            objectPoolList[key] = new Queue<APoolingObject>();
-
-        obj.gameObject.SetActive(false);
+            objectPoolList[key] = new Queue<GameObject>();
+        
+        componentCache[obj] = poolObj;
+        poolObj.OnDeathInit();
+        obj.SetActive(false);
         obj.transform.SetParent(currentReturningParentObj.transform, worldPositionStays: false);
         objectPoolList[key].Enqueue(obj);
     }
-    public void InitPoollist()
+
+    private void InitPoolList()
     {
-        Destroy(currentReturningParentObj);
-        currentReturningParentObj = Instantiate(retruningParentObj);
-        objectPoolList = new Dictionary<PoolObjectType, Queue<APoolingObject>>();
+        if (currentReturningParentObj != null)
+            Destroy(currentReturningParentObj);
+        
+        currentReturningParentObj = Instantiate(returningParentObj);
+        objectPoolList = new Dictionary<PoolObjectType, Queue<GameObject>>();
+        componentCache = new Dictionary<GameObject, IPoolingObject>();
     }
-
 }
-

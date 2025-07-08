@@ -102,7 +102,7 @@ public class ObstacleGenerator : HalfSingleMono<ObstacleGenerator>
             {
                 if (timeTables.ContainsKey(currentSpawnTime) && timeTables[currentSpawnTime] == generateSets.generateType)
                 {
-                    ObjectPooler.Instance.Get(generateSets.spawnList[index], gameObject.transform.position, Vector3.zero);
+                    ObjectPooler.Instance.Get(generateSets.spawnList[index].gameObject, gameObject.transform.position, Vector3.zero);
                     timeTables.Remove(currentSpawnTime);
                 }
             }

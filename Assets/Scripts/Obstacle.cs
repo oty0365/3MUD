@@ -1,27 +1,28 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public abstract class Objectile : APoolingObject
+public abstract class Objectile : MonoBehaviour, IPoolingObject
 {
+    
     public static float moveSpeed;
     public static Action<float> changeMoveSpeed;
-
     public float localMoveSpeed;
     public FloatRange spawnTime;
-    public APoolingObject colideParticle;
-
-
+    public GameObject collideParticle;
+    public PoolObjectType ObjectType{get=>objectType;set{}}
+    [SerializeField] private PoolObjectType objectType;
     [SerializeField] private float localHeight;
     [SerializeField] protected float damage;
     [SerializeField] protected Rigidbody2D _rb2D;
 
-    public override void OnBirth()
+    public virtual void OnBirth()
     {
         OnInit();
     }
 
-    public override void OnDeathInit()
+    public void OnDeathInit()
     {
         changeMoveSpeed -= ChangeAllMoveSpeed;
     }
@@ -30,9 +31,9 @@ public abstract class Objectile : APoolingObject
     {
         if (collision.CompareTag("Player"))
         {
-            if (colideParticle != null)
+            if (collideParticle != null)
             {
-                ObjectPooler.Instance.Get(colideParticle, collision.transform.position, Vector3.zero);
+                ObjectPooler.Instance.Get(collideParticle, collision.transform.position, Vector3.zero);
             }
 
             OnHit();
@@ -46,6 +47,7 @@ public abstract class Objectile : APoolingObject
 
     public virtual void OnInit()
     {
+        ObjectType = objectType;
         changeMoveSpeed -= ChangeAllMoveSpeed;
         changeMoveSpeed += ChangeAllMoveSpeed;
 
@@ -60,4 +62,5 @@ public abstract class Objectile : APoolingObject
         moveSpeed = amount;
         _rb2D.linearVelocity = new Vector2(-localMoveSpeed * moveSpeed, 0);
     }
+    
 }

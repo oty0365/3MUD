@@ -6,6 +6,6 @@ public class Coin : Objectile
     public override void OnHit()
     {
         PlayerStatus.Instance.CoinConsume(amount);
-        Death();
+        ObjectPooler.Instance.Return(gameObject);
     }
 }

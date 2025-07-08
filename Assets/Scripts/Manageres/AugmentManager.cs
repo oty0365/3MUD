@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -13,23 +11,24 @@ public class AugmentUI
     public TextMeshProUGUI augmentUIDesc;
 }
 
+public enum AugmentType
+{
+    Status,
+    Effect
+}
 public class AugmentManager : HalfSingleMono<AugmentManager>
 {
 
     public AugmentDatas augmentDatas;
-    private List<AugmentData> _augmentDatas = new List<AugmentData>();
+    //private List<AugmentData> _augmentDatas = new List<AugmentData>();
 
     void Start()
     {
         CheckAndUploadAugments();
     }
-    void Update()
-    {
-        
-    }
 
 
-    public void CheckAndUploadAugments()
+    private void CheckAndUploadAugments()
     {
         var methods = GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
@@ -47,7 +46,7 @@ public class AugmentManager : HalfSingleMono<AugmentManager>
                     }
                     else
                     {
-                        UnityEngine.Debug.LogWarning($"{method.Name}Àº ¸Å°³º¯¼ö°¡ ¾ø°í void ¹ÝÈ¯ÇüÀÌ¾î¾ß ÇÕ´Ï´Ù.");
+                        UnityEngine.Debug.LogWarning($"{method.Name}ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ void ï¿½ï¿½È¯ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.");
                     }
                 }
             }
@@ -60,26 +59,27 @@ public class AugmentManager : HalfSingleMono<AugmentManager>
     [EventUpload]
     public void HpUp()
     {
-        PlayerStatus.Instance.SetMaxHp(3);
+        PlayerStatus.Instance.SetMaxHp(5);
+        PlayerStatus.Instance.SetCurHp(5);
     }
     [EventUpload]
     public void DefUp()
     {
-        PlayerStatus.Instance.SetMaxHp(3);
+        PlayerStatus.Instance.SetDef(2);
     }
     [EventUpload]
     public void AtkUp()
     {
-        PlayerStatus.Instance.SetMaxHp(3);
+        PlayerStatus.Instance.SetAtk(3);
     }
     [EventUpload]
     public void SpdUp()
     {
-        //PlayerInfo.Instance.playerBasicAttackDamage += 15;
+        PlayerStatus.Instance.SetSpeed(3);
     }
     [EventUpload]
     public void WipUp()
     {
-
+        PlayerStatus.Instance.SetWill(4);
     }
 }

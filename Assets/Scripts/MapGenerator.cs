@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeField] private APoolingObject map;
+    [SerializeField] private GameObject map;
     [SerializeField] private float generateDistance;
     private GameObject _target;
     

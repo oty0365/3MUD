@@ -1,17 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-public class ParticleObject : APoolingObject
+public class ParticleObject : MonoBehaviour,IPoolingObject
 {
+    [SerializeField] PoolObjectType objectType;
+    public PoolObjectType ObjectType{get=>objectType;set{}}
     public ParticleSystem prt;
     private float waitTime;
 
 
-    public override void OnDeathInit()
+    public virtual void OnDeathInit()
     {
 
     }
-    public override void OnBirth()
+    public virtual void OnBirth()
     {
         waitTime = prt.main.duration;
         StartCoroutine(ParticleFlow());
@@ -20,6 +22,6 @@ public class ParticleObject : APoolingObject
     {
         prt.Play();
         yield return new WaitForSeconds(waitTime);
-        Death();
+        ObjectPooler.Instance.Return(gameObject);
     }
 }

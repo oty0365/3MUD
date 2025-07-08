@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ae25baf39ff0d47abce69eff71acd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkDelay: 0.3
   objectType: 0
   localMoveSpeed: 2
   returnDistance: 50
@@ -994,7 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d11e0c74371e74b8f71ec7bbd4e94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: -2740299810649637778}
+  map: {fileID: 357004811829486448}
   generateDistance: 6
 --- !u!1 &3294192498426839896
 GameObject:

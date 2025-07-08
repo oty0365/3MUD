@@ -14,7 +14,9 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
     public Action<float> onWipChangeUI;
     public Action<float> onMaxHpChangeUI;
     public Action<int> onCoinChangeUI;
+
     public event Action onPlayerDeath;
+
     //private
     private bool _isAlive;
     private bool _isInfinate;
@@ -28,30 +30,24 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
     private float _currentRunWill;
 
     private Coroutine _currentInfinateTimeFlow;
+
     //get-set
     public bool IsAlive
     {
         get => _isAlive;
-        set
-        {
-            _isAlive = value;
-        }
+        set { _isAlive = value; }
     }
+
     public bool IsInfinate
     {
         get => _isInfinate;
-        set
-        {
-            _isInfinate = value;
-        }
+        set { _isInfinate = value; }
     }
+
     public float PlayerInfinateTime
     {
         get => _playerInfiateTime;
-        set
-        {
-            _playerInfiateTime = value;
-        }
+        set { _playerInfiateTime = value; }
     }
 
     public float PlayerMaxHp
@@ -63,10 +59,12 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             {
                 value = 0;
             }
+
             if (value < PlayerCurHp)
             {
                 PlayerCurHp = value;
             }
+
             if (value != _playerMaxHp)
             {
                 _playerMaxHp = value;
@@ -84,6 +82,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             onDefChangeUI?.Invoke(_currentRunDeffence);
         }
     }
+
     public float CurrentRunAttack
     {
         get => _currentRunAttack;
@@ -97,9 +96,11 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             {
                 _currentRunAttack = value;
             }
+
             onAtkChangeUI?.Invoke(_currentRunAttack);
         }
     }
+
     public float CurrentRunSpeed
     {
         get => _currentRunSpeed;
@@ -113,10 +114,12 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             {
                 _currentRunSpeed = value;
             }
+
             onSpdChangeUI?.Invoke(_currentRunSpeed);
 
         }
     }
+
     public float CurrentRunWill
     {
         get => _currentRunWill;
@@ -126,6 +129,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             onWipChangeUI?.Invoke(_currentRunSpeed);
         }
     }
+
     public int CurrentRunCoinCount
     {
         get => _currentRunCoinCount;
@@ -135,6 +139,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             onCoinChangeUI?.Invoke(_currentRunCoinCount);
         }
     }
+
     public float PlayerCurHp
     {
         get => _playerCurHp;
@@ -144,11 +149,13 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             {
                 value = PlayerMaxHp;
             }
+
             if (value <= 0)
             {
                 value = 0;
                 onPlayerDeath?.Invoke();
             }
+
             if (value != _playerCurHp)
             {
                 _playerCurHp = value;
@@ -156,6 +163,7 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
             }
         }
     }
+
     //func-public
     public void TakeDamage(float amount)
     {
@@ -171,20 +179,49 @@ public class PlayerStatus : HalfSingleMono<PlayerStatus>
         }
 
     }
+
     public void CoinConsume(int amount)
     {
         CurrentRunCoinCount += amount;
         playerInteractEffects?.Invoke(PlayerEffects.CoinConsume, amount);
     }
+
     public void Heal(float amount)
     {
         PlayerCurHp += amount;
         playerInteractEffects?.Invoke(PlayerEffects.Heal, amount);
     }
+
     public void SetMaxHp(float amount)
     {
         PlayerMaxHp += amount;
     }
+
+    public void SetCurHp(float amount)
+    {
+        PlayerCurHp += amount;
+    }
+
+    public void SetAtk(float amount)
+    {
+        CurrentRunAttack += amount;
+    }
+
+    public void SetDef(float amount)
+    {
+        CurrentRunDeffence += amount;
+    }
+
+    public void SetWill(float amount)
+    {
+        CurrentRunWill += amount;
+    }
+
+    public void SetSpeed(float amount)
+    {
+        CurrentRunSpeed += amount;
+    }
+
     public void SetInfinateTime(float time)
     {
         if (_currentInfinateTimeFlow == null)

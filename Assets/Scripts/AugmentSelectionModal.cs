@@ -30,9 +30,7 @@ public class AugmentSelectionModal : MonoBehaviour,ShowHider
         for (int i = availableCards.Count - 1; i > 0; i--)
         {
             int randomIndex = UnityEngine.Random.Range(0, i + 1);
-            AugmentData temp = availableCards[i];
-            availableCards[i] = availableCards[randomIndex];
-            availableCards[randomIndex] = temp;
+            (availableCards[i], availableCards[randomIndex]) = (availableCards[randomIndex], availableCards[i]);
         }
         for (int i = 0; i < augmentCards.Length && i < availableCards.Count; i++)
         {
