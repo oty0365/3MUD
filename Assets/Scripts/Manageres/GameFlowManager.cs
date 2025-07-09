@@ -62,7 +62,7 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
             }
             else
             {
-                Debug.LogWarning($"{obj.name}¿¡ IEventUpLoader°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning($"{obj.name}ï¿½ï¿½ IEventUpLoaderï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             }
 
         }
@@ -94,6 +94,11 @@ public class GameFlowManager : HalfSingleMono<GameFlowManager>
         Objectile.changeMoveSpeed?.Invoke(0);
         PlatformBase.changeMoveSpeed?.Invoke(0);
         ObstacleGenerator.Instance.StopSpawn();
+    }
+
+    public void SetGame(bool flag)
+    {
+        HasStarted = flag;
     }
 
     private IEnumerator EndGameFlow()

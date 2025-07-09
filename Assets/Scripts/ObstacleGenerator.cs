@@ -64,6 +64,7 @@ public class ObstacleGenerator : HalfSingleMono<ObstacleGenerator>
         while (true)
         {
             var index = UnityEngine.Random.Range(0, generateSets.spawnList.Count);
+            Debug.Log(generateSets.spawnList[index]);
             var waitTime = generateSets.spawnList[index].spawnTime.GetRandom();
             var currentSpawnTime = Time.time + waitTime;
             var canSpawn = true;

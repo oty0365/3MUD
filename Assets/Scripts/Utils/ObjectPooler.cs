@@ -9,6 +9,7 @@ public enum PoolObjectType
     Coin,
     CoinParticle,
     Apple,
+    RunesOfAugment
 }
 
 public class ObjectPooler : HalfSingleMono<ObjectPooler>

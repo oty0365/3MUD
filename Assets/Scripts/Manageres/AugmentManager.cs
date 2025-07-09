@@ -16,7 +16,7 @@ public enum AugmentType
     Status,
     Effect
 }
-public class AugmentManager : HalfSingleMono<AugmentManager>
+public class AugmentManager : HalfSingleMono<AugmentManager>,IEvent
 {
 
     public AugmentDatas augmentDatas;
@@ -27,7 +27,15 @@ public class AugmentManager : HalfSingleMono<AugmentManager>
         CheckAndUploadAugments();
     }
 
+    public void RemoveEvent(InGameEvent inGameEvent)
+    {
+        GameEventManager.Instance.RemoveEvent(inGameEvent);
+    }
 
+    public void UploadEvent(InGameEvent inGameEvent, Action action)
+    {
+        GameEventManager.Instance.UploadEvent(inGameEvent, action);
+    }
     private void CheckAndUploadAugments()
     {
         var methods = GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -42,7 +50,7 @@ public class AugmentManager : HalfSingleMono<AugmentManager>
                     if (method.GetParameters().Length == 0 && method.ReturnType == typeof(void))
                     {
                         var action = (Action)Delegate.CreateDelegate(typeof(Action), this, method);
-                        GameEventManager.Instance.UploadEvent(inGameEvent, action);
+                        UploadEvent(inGameEvent, action);
                     }
                     else
                     {

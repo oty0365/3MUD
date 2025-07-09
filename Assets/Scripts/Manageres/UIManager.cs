@@ -26,6 +26,7 @@ public class UIManager : HalfSingleMono<UIManager>,IEventUpLoader
     [SerializeField] private Image skillBtn;
     //private
     private Coroutine _currentFadeFlow;
+    public Action<bool> setGame;
     
     private void Start()
     {
@@ -46,6 +47,7 @@ public class UIManager : HalfSingleMono<UIManager>,IEventUpLoader
         playerStatus.onSpdChangeUI += OnSpdChange;
         playerStatus.onDefChangeUI += OnDefChange;
         playerStatus.onWipChangeUI += OnWipChange;
+        setGame+=GameFlowManager.Instance.SetGame;
         augmentSelectionModal.fadeOut += DarkFadeOut;
     }
 
@@ -183,6 +185,7 @@ public class UIManager : HalfSingleMono<UIManager>,IEventUpLoader
     }
     public void AugmentSelection()
     {
+        setGame?.Invoke(false);
         StartCoroutine(AugmentSelectionFlow());
     }
     

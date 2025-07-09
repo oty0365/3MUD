@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class MoveCommander : MonoBehaviour
 {
+    
     [SerializeField] private PlayerMove playerController;
     public void JumpAction()
     {
-        GameFlowManager.Instance.HasStarted = true;
+        GameFlowManager.Instance.SetGame(true);
         playerController.Jump();
     }
     public void SlideAction(bool afterClicked)
@@ -16,6 +17,7 @@ public class MoveCommander : MonoBehaviour
         }
         else
         {
+            GameFlowManager.Instance.SetGame(true);
             playerController.StartSlide();
         }
 
