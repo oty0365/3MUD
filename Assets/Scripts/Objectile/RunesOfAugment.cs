@@ -35,4 +35,5 @@ public class RunesOfAugment : Objectile
             yield return new WaitForSeconds(checkTime);
         }
     }
+    
 }

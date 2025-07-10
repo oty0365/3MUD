@@ -10,3 +10,14 @@ WillRuneName,1,1,영혼의 룬,Runes Of Soul
 WillRuneDesc,1,1,의지를 4올린다.,Increase WIP by 3.
 HpRuneName,1,1,생명의 룬,Runes Of Life
 HpRuneDesc,1,1,생명력을 <color=green>5</color>올린다.,Increase HP by <color=green>5</color>
+RuneDescriptionPannel-1,1,1,무구의 룬을 입수했다.. \n어떤 모습일까?,Weaponic rune secured... \nIts appearance is shrouded in mystery.
+TheButcherofBloodName,1,1,핏빛 도살자,The Butcher of Blood
+TheButcherofBloodDesc,1,1,적에게 <val0>의 피해를 입히고 체력을 <val1>만큼 회복한다.,Deals <val0> damage to the enemy and restores <val1> health.
+TheSwordofPaladinName,1,1,성기사의 검,The Sword of Paladin
+TheSwordofPaladinDecs,1,1,적에게 <val0>의 피해와 <val1>의 추가피해를 입힌다.,Deals <val0> damage with <val1> additional damage to the enemy.
+ForgivenEdgeName,1,1,속죄자의 도,Forgiven Edge
+ForgivenEdgeDesc,1,1,적에게 <val0>의 피해를 입히고 매 <val1>번째 공격마다 배에 달하는 피해를 입힌다.,Deals <val0> damage to the enemy. Every 3rd attack deals double damage.
+ThornshieldofRejectionName,1,1,거절의 가시방패,Thornshield of Rejection
+ThornshieldofRejectionDesc,1,1,적에게 <val0>의 피해를 입힌다. 공격을 받을때마다 적에게도 <val1>의 피해를 준다.,Deals <val0> damage to the enemy. Whenever you are attacked{COMMA} the enemy takes <val1> damage in return.
+WhiteWillName,1,1,하얀 의지,White Will
+WhiteWillDesc,1,1,적에게 <val0>의 피해를 입힌다.,Deals <val0> damage to the enemy.

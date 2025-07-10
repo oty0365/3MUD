@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(ObjectTypeDefiner))]
 public abstract class Objectile : MonoBehaviour, IPoolingObject
 {
     
@@ -10,16 +11,11 @@ public abstract class Objectile : MonoBehaviour, IPoolingObject
     public static Action<float> changeMoveSpeed;
     public float localMoveSpeed;
     public FloatRange spawnTime;
-    public GameObject collideParticle;
-    public PoolObjectType ObjectType{get=>objectType;set{}}
-    [SerializeField] private PoolObjectType objectType;
     [SerializeField] private float localHeight;
-    [SerializeField] protected float damage;
     [SerializeField] protected Rigidbody2D _rb2D;
 
     public virtual void OnBirth()
     {
-        ObjectType = objectType;
         changeMoveSpeed -= ChangeAllMoveSpeed;
         changeMoveSpeed += ChangeAllMoveSpeed;
 
@@ -33,25 +29,6 @@ public abstract class Objectile : MonoBehaviour, IPoolingObject
     {
         changeMoveSpeed -= ChangeAllMoveSpeed;
     }
-
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            if (collideParticle != null)
-            {
-                ObjectPooler.Instance.Get(collideParticle, collision.transform.position, Vector3.zero);
-            }
-
-            OnHit();
-        }
-    }
-
-    public virtual void OnHit()
-    {
-        PlayerStatus.Instance.TakeDamage(damage);
-    }
-
     public void ChangeAllMoveSpeed(float amount)
     {
         moveSpeed = amount;

@@ -1,10 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(ObjectTypeDefiner))]
 public class ParticleObject : MonoBehaviour,IPoolingObject
 {
-    [SerializeField] PoolObjectType objectType;
-    public PoolObjectType ObjectType{get=>objectType;set{}}
     public ParticleSystem prt;
     private float waitTime;
 

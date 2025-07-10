@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1646154401310315325}
   - component: {fileID: 6652020530292223169}
   - component: {fileID: 2403886107960062240}
+  - component: {fileID: 4301878793843023541}
   m_Layer: 0
   m_Name: ColideParticle
   m_TagString: Untagged
@@ -4904,5 +4905,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50e2ab3672bc6f4cbf0184e3e63b16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 3
   prt: {fileID: 1646154401310315325}
+--- !u!114 &4301878793843023541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879988108203998366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256d11eb1fc9c8448850444fe05a6271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolObjectType: 3

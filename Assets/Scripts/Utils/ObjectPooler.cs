@@ -41,10 +41,21 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
         return poolObj;
     }
 
+    private PoolObjectType GetObjectType(GameObject obj)
+    {
+        var typeDefiner = obj.GetComponent<ObjectTypeDefiner>();
+        if (typeDefiner != null)
+        {
+            return typeDefiner.poolObjectType;
+        }
+        
+        Debug.LogError($"ObjectTypeDefiner component not found on {obj.name}");
+        return PoolObjectType.PlainPlatForm1;
+    }
+
     public GameObject Get(GameObject prefab, Vector2 position, Vector3 rotation)
     {
-        var prefabPool = GetPoolingComponent(prefab);
-        PoolObjectType key = prefabPool.ObjectType;
+        PoolObjectType key = GetObjectType(prefab);
         
         if (!objectPoolList.ContainsKey(key))
         {
@@ -58,7 +69,6 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
         {
             obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
             poolObj = GetPoolingComponent(obj);
-            poolObj.ObjectType = key;
         }
         else
         {
@@ -78,8 +88,7 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
 
     public GameObject Get(GameObject prefab, Vector2 position, Vector3 rotation, Vector2 size)
     {
-        var prefabPool = GetPoolingComponent(prefab);
-        PoolObjectType key = prefabPool.ObjectType;
+        PoolObjectType key = GetObjectType(prefab);
 
         if (!objectPoolList.ContainsKey(key))
             objectPoolList[key] = new Queue<GameObject>();
@@ -92,7 +101,6 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
             obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
             obj.transform.localScale = new Vector3(size.x, size.y, 1f);
             poolObj = GetPoolingComponent(obj);
-            poolObj.ObjectType = key;
         }
         else
         {
@@ -112,8 +120,7 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
 
     public GameObject Get(GameObject prefab, Transform parent)
     {
-        var prefabPool = GetPoolingComponent(prefab);
-        PoolObjectType key = prefabPool.ObjectType;
+        PoolObjectType key = GetObjectType(prefab);
 
         if (!objectPoolList.ContainsKey(key))
             objectPoolList[key] = new Queue<GameObject>();
@@ -125,7 +132,6 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
         {
             obj = Instantiate(prefab, parent);
             poolObj = GetPoolingComponent(obj);
-            poolObj.ObjectType = key;
         }
         else
         {
@@ -141,12 +147,12 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
 
     public void Return(GameObject obj)
     {
-        var poolObj = GetPoolingComponent(obj);
-        PoolObjectType key = poolObj.ObjectType;
+        PoolObjectType key = GetObjectType(obj);
 
         if (!objectPoolList.ContainsKey(key))
             objectPoolList[key] = new Queue<GameObject>();
         
+        var poolObj = GetPoolingComponent(obj);
         componentCache[obj] = poolObj;
         poolObj.OnDeathInit();
         obj.SetActive(false);

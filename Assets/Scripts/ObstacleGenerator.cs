@@ -20,6 +20,7 @@ public struct FloatRange
         return UnityEngine.Random.Range(min, max);
     }
 }
+
 [Serializable]
 public class GenerateObj
 {
@@ -30,7 +31,7 @@ public class GenerateObj
 public enum GenerateType
 {
     RunesAndItems = 0,
-    Obstacles ,
+    Obstacles,
     Coins,
 }
 
@@ -41,42 +42,63 @@ public class ObstacleGenerator : HalfSingleMono<ObstacleGenerator>
     public GenerateObj runesAndItems;
 
     private Dictionary<float, GenerateType> timeTables = new();
-    private Coroutine _obstaclesFlow;
-    private Coroutine _coinsFlow;
-    private Coroutine _runesAndItemsFlow;
-
+    private List<Coroutine> activeCoroutines = new();
 
     public void StartSpawn()
     {
-        _obstaclesFlow=StartCoroutine(SpawnFlow(obstacles));
-        _coinsFlow=StartCoroutine(SpawnFlow(coins));
-        _runesAndItemsFlow=StartCoroutine(SpawnFlow(runesAndItems));
-    }
-    public void StopSpawn()
-    {
-        StopCoroutine(_obstaclesFlow);
-        StopCoroutine(_coinsFlow);
-        StopCoroutine(_runesAndItemsFlow);
+        StopAllSpawns();
+        
+        foreach (var obj in obstacles.spawnList)
+        {
+            var coroutine = StartCoroutine(SpawnIndividualObject(obj, obstacles.generateType));
+            activeCoroutines.Add(coroutine);
+        }
+        
+        foreach (var obj in coins.spawnList)
+        {
+            var coroutine = StartCoroutine(SpawnIndividualObject(obj, coins.generateType));
+            activeCoroutines.Add(coroutine);
+        }
+        
+        foreach (var obj in runesAndItems.spawnList)
+        {
+            var coroutine = StartCoroutine(SpawnIndividualObject(obj, runesAndItems.generateType));
+            activeCoroutines.Add(coroutine);
+        }
     }
 
-    private IEnumerator SpawnFlow(GenerateObj generateSets)
+    public void StopSpawn()
+    {
+        StopAllSpawns();
+    }
+
+    private void StopAllSpawns()
+    {
+        foreach (var coroutine in activeCoroutines)
+        {
+            if (coroutine != null)
+                StopCoroutine(coroutine);
+        }
+        activeCoroutines.Clear();
+        timeTables.Clear();
+    }
+
+    private IEnumerator SpawnIndividualObject(Objectile obj, GenerateType generateType)
     {
         while (true)
         {
-            var index = UnityEngine.Random.Range(0, generateSets.spawnList.Count);
-            Debug.Log(generateSets.spawnList[index]);
-            var waitTime = generateSets.spawnList[index].spawnTime.GetRandom();
+            var waitTime = obj.spawnTime.GetRandom();
             var currentSpawnTime = Time.time + waitTime;
             var canSpawn = true;
             var conflictingTimes = new List<float>();
-
+            
             foreach (var scheduledTime in timeTables.Keys)
             {
                 if (Mathf.Abs(scheduledTime - currentSpawnTime) < 1f)
                 {
                     var existingType = timeTables[scheduledTime];
 
-                    if ((int)generateSets.generateType < (int)existingType)
+                    if ((int)generateType < (int)existingType)
                     {
                         conflictingTimes.Add(scheduledTime);
                     }
@@ -94,17 +116,18 @@ public class ObstacleGenerator : HalfSingleMono<ObstacleGenerator>
                 {
                     timeTables.Remove(conflictTime);
                 }
-                timeTables.Add(currentSpawnTime, generateSets.generateType);
+                timeTables.Add(currentSpawnTime, generateType);
             }
 
             yield return new WaitForSeconds(waitTime);
 
             if (canSpawn)
             {
-                if (timeTables.ContainsKey(currentSpawnTime) && timeTables[currentSpawnTime] == generateSets.generateType)
+                if (timeTables.ContainsKey(currentSpawnTime) && timeTables[currentSpawnTime] == generateType)
                 {
-                    ObjectPooler.Instance.Get(generateSets.spawnList[index].gameObject, gameObject.transform.position, Vector3.zero);
+                    ObjectPooler.Instance.Get(obj.gameObject, gameObject.transform.position, Vector3.zero);
                     timeTables.Remove(currentSpawnTime);
+                    Debug.Log($"Spawned: {obj.gameObject.name}, Type: {generateType}");
                 }
             }
         }

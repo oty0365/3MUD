@@ -4930,6 +4930,8 @@ GameObject:
   - component: {fileID: 6130842503445633575}
   - component: {fileID: 6067060224572820836}
   - component: {fileID: 5800507814998023274}
+  - component: {fileID: 3508557627358884886}
+  - component: {fileID: 7370958185635213843}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -5084,13 +5086,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ae4aae37511bb47af512d233425542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 4
   localMoveSpeed: 2
   spawnTime:
-    min: 5
-    max: 20
-  colideParticle: {fileID: 0}
+    min: 10
+    max: 30
   localHeight: 0.3
-  damage: 0
   _rb2D: {fileID: 6130842503445633575}
-  amount: 3
+--- !u!114 &3508557627358884886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8638364256626015222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256d11eb1fc9c8448850444fe05a6271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolObjectType: 4
+--- !u!114 &7370958185635213843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8638364256626015222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb20409938d04de4eaaf5c8ea921c753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 3

@@ -3,13 +3,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+[RequireComponent(typeof(ObjectTypeDefiner))]
 public abstract class PlatformBase : MonoBehaviour,IPoolingObject
 {
     public static float moveSpeed;
     public static Action<float>changeMoveSpeed;
     [SerializeField] float checkDelay = 0.3f;
-    public PoolObjectType ObjectType{get=>objectType;set{}}
-    [SerializeField] private PoolObjectType objectType;
     [SerializeField] protected float localMoveSpeed;
     [SerializeField] private float returnDistance;
     [SerializeField] protected GameObject endOfThisMapObj;

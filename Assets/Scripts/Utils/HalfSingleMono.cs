@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class HalfSingleMono<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;
-    private static object _lock = new();
+    private static readonly object _lock = new();
 
     public static T Instance
     {

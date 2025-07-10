@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7591204721141587475}
   - component: {fileID: 491620773063032966}
   - component: {fileID: 1489021023361727199}
+  - component: {fileID: 4596128897833384448}
+  - component: {fileID: 3413333742145726844}
   m_Layer: 0
   m_Name: RockObjstacle
   m_TagString: Obstacle
@@ -129,14 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f952195ffc5bd7443a2e01afa023dcbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 1
   localMoveSpeed: 2
   spawnTime:
     min: 2.5
     max: 4.5
-  colideParticle: {fileID: 0}
   localHeight: 0.64
-  damage: 5
   _rb2D: {fileID: 7591204721141587475}
 --- !u!60 &1489021023361727199
 PolygonCollider2D:
@@ -199,3 +198,29 @@ PolygonCollider2D:
       - {x: 0.56608176, y: -1.6109941}
       - {x: 0.53309935, y: -1.4609944}
   m_UseDelaunayMesh: 0
+--- !u!114 &4596128897833384448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5167389508144319079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a13ba4225348fb46bd530c224e22cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 6
+--- !u!114 &3413333742145726844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5167389508144319079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256d11eb1fc9c8448850444fe05a6271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolObjectType: 1
