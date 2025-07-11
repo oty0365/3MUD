@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 284527253215581876}
   - component: {fileID: 3600272031654019537}
   - component: {fileID: 6927905697760548736}
+  - component: {fileID: 273341051008400011}
+  - component: {fileID: 1140183821419533051}
   m_Layer: 0
   m_Name: RunesOfAugment
   m_TagString: Untagged
@@ -169,10 +171,35 @@ MonoBehaviour:
   spawnTime:
     min: 15
     max: 50
-  collideParticle: {fileID: 0}
-  objectType: 5
   localHeight: 0.2
-  damage: 0
   _rb2D: {fileID: 284527253215581876}
+  eventObj: {fileID: 1140183821419533051}
+  checkTime: 0.3
+  distance: 1
+--- !u!114 &273341051008400011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676264875756074213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256d11eb1fc9c8448850444fe05a6271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolObjectType: 5
+--- !u!114 &1140183821419533051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676264875756074213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10f0041ed1b3ea4e889947b2b2bb8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   checkTime: 0.3
   distance: 1

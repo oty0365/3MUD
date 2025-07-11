@@ -4,36 +4,35 @@ using UnityEngine;
 
 public class RunesOfAugment : Objectile
 {
-    [SerializeField] private float checkTime;
-    [SerializeField] private float distance;
+    [SerializeField] private EventObj eventObj;
     public event Action onAugmentActivate;
-    private GameObject player;
     public override void OnBirth()
     {
         base.OnBirth();
+        eventObj.target = PlayerStatus.Instance.gameObject;
         onAugmentActivate += UIManager.Instance.AugmentSelection;
-        player = PlayerStatus.Instance.gameObject;
         StartCoroutine(CheckDistanceFlow());
-    }
-
-    public override void OnDeathInit()
-    {
-        onAugmentActivate -= UIManager.Instance.AugmentSelection;
-        base.OnDeathInit();
     }
 
     private IEnumerator CheckDistanceFlow()
     {
         while (true)
         {
-            if (Vector2.Distance(transform.position, player.transform.position) < distance)
+            if (eventObj.CheckDistance(eventObj.target, gameObject, eventObj.distance))
             {
                 onAugmentActivate?.Invoke();
                 yield return new WaitForSeconds(0.8f);
                 ObjectPooler.Instance.Return(gameObject);
+                yield break;
             }
-            yield return new WaitForSeconds(checkTime);
+            yield return new WaitForSeconds(eventObj.checkTime);
         }
     }
+    public override void OnDeathInit()
+    {
+        onAugmentActivate -= UIManager.Instance.AugmentSelection;
+        base.OnDeathInit();
+    }
+
     
 }
